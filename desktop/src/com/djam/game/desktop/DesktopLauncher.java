@@ -7,6 +7,9 @@ import com.djam.game.Game;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.width = 960;
+		config.height = 640;
+
 		new LwjglApplication(new Game(), config);
 	}
 }

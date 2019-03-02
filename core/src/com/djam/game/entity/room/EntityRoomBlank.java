@@ -1,5 +1,7 @@
 package com.djam.game.entity.room;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.djam.game.animation.Animation;
 import com.djam.game.entity.Entity;
@@ -19,4 +21,10 @@ public class EntityRoomBlank extends EntityRoom {
 
         return animation;
     }
+
+    @Override
+    public void render(SpriteBatch batch, OrthographicCamera camera) {
+        this.getAnimation().render(batch, camera, this.getPosition());
+    }
+
 }

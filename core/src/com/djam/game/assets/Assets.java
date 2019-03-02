@@ -61,6 +61,7 @@ public class Assets {
         this.loadTexture("building/room_blank.png");
         this.loadTexture("building/room_invisible.png");
         this.loadTexture("building/room_collision.png");
+        this.loadTexture("building/desk.png");
 
         this.assetManager.finishLoading();
     }

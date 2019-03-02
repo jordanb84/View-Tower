@@ -112,4 +112,9 @@ public abstract class Entity {
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
+
+    public Animation getAnimation() {
+        return animation;
+    }
+
 }
