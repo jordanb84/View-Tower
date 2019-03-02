@@ -36,6 +36,10 @@ public class Animation {
         this.getCurrentFrame().render(batch, position);
     }
 
+    public void render(SpriteBatch batch, OrthographicCamera camera, Vector2 position, float alpha) {
+        this.getCurrentFrame().render(batch, position, alpha);
+    }
+
     public void update(OrthographicCamera camera) {
         this.frameElapsed += 1 * Gdx.graphics.getDeltaTime();
 

@@ -13,6 +13,13 @@ public class Frame {
     }
 
     public void render(SpriteBatch batch, Vector2 position) {
+        this.sprite.setAlpha(1);
+        this.sprite.setPosition(position.x, position.y);
+        this.sprite.draw(batch);
+    }
+
+    public void render(SpriteBatch batch, Vector2 position, float alpha) {
+        this.sprite.setAlpha(alpha);
         this.sprite.setPosition(position.x, position.y);
         this.sprite.draw(batch);
     }

@@ -82,6 +82,10 @@ public class Business {
 
                                             this.map.getCurrency().modifyBalance(-this.placingNpc.COST);
                                         }
+
+                                        if(this.map.getCurrency().getBalance() <= 0) {
+                                            this.placingNpc = null;
+                                        }
                                     }
                                 }
                             } else {
