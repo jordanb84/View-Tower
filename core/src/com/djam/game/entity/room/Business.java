@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.djam.game.assets.Assets;
+import com.djam.game.entity.impl.NpcType;
 import com.djam.game.map.Map;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class Business {
 
     private Map map;
 
+    private NpcType placingNpc;
+
     public Business(Map map) {
         this.map = map;
 
@@ -36,6 +39,8 @@ public class Business {
         this.placingSprite.setAlpha(0.5f);
 
         this.generateRoomGrid(3, 3);
+
+        this.placingNpc = NpcType.Farmer;
     }
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
@@ -61,6 +66,21 @@ public class Business {
                         if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
                             roomRemoveQueue.add(room);
                             roomAddQueue.add(new EntityRoom(this.map, new Vector2(room.getPosition())));
+                        }
+                    }
+                } else {
+                    for(EntityDesk desk : room.getDesks()) {
+                        //TODO Highlight chair, show faded placing NPC behind desk
+                        if(mouseBody.overlaps(desk.getBody())) {
+                            if(!desk.hasNpc()) {
+                                desk.placing(this.placingNpc);
+
+                                if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                                    desk.placeNpc(this.placingNpc);
+                                }
+                            }
+                        } else {
+                            desk.unplace();
                         }
                     }
                 }

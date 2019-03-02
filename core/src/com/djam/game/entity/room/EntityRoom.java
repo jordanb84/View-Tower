@@ -78,4 +78,8 @@ public class EntityRoom extends Entity {
         }
     }
 
+    public List<EntityDesk> getDesks() {
+        return desks;
+    }
+
 }
