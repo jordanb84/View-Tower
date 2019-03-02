@@ -20,6 +20,8 @@ public class Animation {
 
     private float frameElapsed;
 
+    private boolean complete;
+
     public Animation(float frameDuration, String ... frames) {
         this.frameDuration = frameDuration;
 
@@ -56,6 +58,7 @@ public class Animation {
         this.frameIndex++;
 
         if(this.frameIndex >= this.frames.size()) {
+            this.complete = true;
             this.frameIndex = 0;
         }
     }
@@ -78,6 +81,14 @@ public class Animation {
         for(String path : paths) {
             this.frames.add(new Frame(new Sprite(Assets.getInstance().getTexture(prefix + path))));
         }
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 
 }

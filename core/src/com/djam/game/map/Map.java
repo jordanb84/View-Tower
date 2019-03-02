@@ -1,5 +1,6 @@
 package com.djam.game.map;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -28,9 +29,14 @@ public class Map {
 
     private List<EntityLadder> ladders = new ArrayList<EntityLadder>();
 
+    private OrthographicCamera textCamera;
+
     public Map() {
         this.business = new Business(this);
         this.currency = new Currency();
+
+        this.textCamera = new OrthographicCamera();
+        this.textCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
@@ -113,6 +119,10 @@ public class Map {
 
     public List<EntityLadder> getLadders() {
         return ladders;
+    }
+
+    public OrthographicCamera getTextCamera() {
+        return textCamera;
     }
 
 }

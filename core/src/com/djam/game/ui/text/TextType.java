@@ -8,16 +8,16 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import java.util.logging.FileHandler;
 
 public enum  TextType {
-    Default("ui/font.ttf")
+    Default("ui/font.ttf", 12), Default_Small("ui/font.ttf", 4)
     ;
 
-    TextType(String path) {
+    TextType(String path, int size) {
         FileHandle file = Gdx.files.internal(path);
 
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(file);
 
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        fontParameter.size = 12;
+        fontParameter.size = size;
 
         this.FONT = fontGenerator.generateFont(fontParameter);
     }

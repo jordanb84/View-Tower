@@ -90,6 +90,8 @@ public class Assets {
         this.loadTexture("plant/flower_4.png");
         this.loadTexture("plant/flower_5.png");
 
+        this.loadTexture("ui/coin_large.png");
+
         this.assetManager.finishLoading();
     }
 
