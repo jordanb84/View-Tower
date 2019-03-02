@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.djam.game.animation.Animation;
 import com.djam.game.assets.Assets;
 import com.djam.game.entity.Entity;
+import com.djam.game.entity.impl.EntityLadder;
 import com.djam.game.map.Map;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class EntityRoom extends Entity {
     private List<EntityDesk> desks = new ArrayList<EntityDesk>();
 
     private Sprite deskSprite;
+
+    private EntityLadder ladder;
 
     public EntityRoom(Map map, Vector2 position) {
         super(map, position);
@@ -80,6 +83,12 @@ public class EntityRoom extends Entity {
 
     public List<EntityDesk> getDesks() {
         return desks;
+    }
+
+    public void setupRoom() {
+        this.ladder = new EntityLadder(this.getMap(), new Vector2(this.getPosition().x + 180, this.getPosition().y));
+
+        this.getMap().spawn(ladder);
     }
 
 }

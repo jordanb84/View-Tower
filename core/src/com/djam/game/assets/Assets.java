@@ -81,6 +81,8 @@ public class Assets {
         this.loadTexture("ui/room_icon.png");
         this.loadTexture("ui/room_icon_hover.png");
 
+        this.loadTexture("building/ladder.png");
+
         this.assetManager.finishLoading();
     }
 

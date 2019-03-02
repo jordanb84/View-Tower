@@ -73,7 +73,12 @@ public class Business {
                             if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
                                 if(this.map.getCurrency().getBalance() >= this.roomPrice) {
                                     roomRemoveQueue.add(room);
-                                    roomAddQueue.add(new EntityRoom(this.map, new Vector2(room.getPosition())));
+
+                                    EntityRoom fullRoom = new EntityRoom(this.map, new Vector2(room.getPosition()));
+                                    fullRoom.setupRoom();
+
+                                    roomAddQueue.add(fullRoom);
+
                                     this.map.getCurrency().modifyBalance(-this.roomPrice);
                                 }
 

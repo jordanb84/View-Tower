@@ -48,8 +48,19 @@ public class EntityPlayer extends EntityLiving {
             this.setDirectionalAnimation(this.idleAnimation);
         }
 
-        if(!(this.getDirection() == Direction.DOWN)) {
+        if(!(this.getDirection() == Direction.DOWN) && !(this.getDirection() == Direction.UP)) {
             this.getDirectionalAnimation().setDirection(this.getDirection());
+        }
+
+        for(EntityLadder ladder : this.getMap().getLadders()) {
+            if(this.getBody().overlaps(ladder.getBody())) {
+                if(Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+                    this.getPosition().add(0, 69);
+                }
+                if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+                    this.getPosition().add(0, -67);
+                }
+            }
         }
 
         this.updatePhysics();

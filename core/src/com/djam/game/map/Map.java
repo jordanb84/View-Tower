@@ -7,6 +7,7 @@ import com.djam.game.economy.Currency;
 import com.djam.game.entity.Direction;
 import com.djam.game.entity.Entity;
 import com.djam.game.entity.EntityLiving;
+import com.djam.game.entity.impl.EntityLadder;
 import com.djam.game.entity.room.Business;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class Map {
     private List<Rectangle> collisionBodies = new ArrayList<Rectangle>();
 
     private Currency currency;
+
+    private List<EntityLadder> ladders = new ArrayList<EntityLadder>();
 
     public Map() {
         this.business = new Business(this);
@@ -63,6 +66,11 @@ public class Map {
 
     public void spawn(Entity entity) {
         this.entitySpawnQueue.add(entity);
+
+        if(entity instanceof EntityLadder) {
+            //Keeping ladders to separate list to ease performance drain from entity check loops
+            this.ladders.add(((EntityLadder) entity));
+        }
     }
 
     public void despawn(Entity entity) {
@@ -101,6 +109,10 @@ public class Map {
 
     public Currency getCurrency() {
         return currency;
+    }
+
+    public List<EntityLadder> getLadders() {
+        return ladders;
     }
 
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.djam.game.animation.Animation;
+import com.djam.game.entity.impl.EntityLadder;
 import com.djam.game.map.Map;
 
 public abstract class Entity {
@@ -67,6 +68,14 @@ public abstract class Entity {
         Rectangle newPositionBody = new Rectangle(newPosition.x, newPosition.y, this.getWidth(), this.getHeight());
 
         boolean collisionAtNewPosition = this.getMap().collisionAt(newPositionBody);
+
+       /** if(collisionAtNewPosition) {
+            for(EntityLadder ladder : this.getMap().getLadders()) {
+                if(ladder.getBody().overlaps(newPositionBody)) {
+                    collisionAtNewPosition = false;
+                }
+            }
+        }**/
 
         if(!collisionAtNewPosition) {
             this.getPosition().add(velocity.x * Gdx.graphics.getDeltaTime(), velocity.y * Gdx.graphics.getDeltaTime());
