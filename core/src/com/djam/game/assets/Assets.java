@@ -63,6 +63,13 @@ public class Assets {
         this.loadTexture("building/room_collision.png");
         this.loadTexture("building/desk.png");
 
+        this.loadTexture("npc/farmer_0.png");
+        this.loadTexture("npc/farmer_1.png");
+        this.loadTexture("npc/farmer_2.png");
+        this.loadTexture("npc/farmer_3.png");
+        this.loadTexture("npc/farmer_4.png");
+        this.loadTexture("npc/farmer_5.png");
+
         this.assetManager.finishLoading();
     }
 

@@ -56,6 +56,14 @@ public class EntityRoom extends Entity {
         }
     }
 
+    @Override
+    public void update(OrthographicCamera camera) {
+        super.update(camera);
+        for(EntityDesk desk : this.desks) {
+            desk.update(camera);
+        }
+    }
+
     private void generateDesks() {
         float deskWidth = this.deskSprite.getWidth();
         float deskHeight = this.deskSprite.getHeight();
