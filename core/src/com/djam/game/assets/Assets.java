@@ -92,6 +92,13 @@ public class Assets {
 
         this.loadTexture("ui/coin_large.png");
 
+        this.loadTexture("ui/happy_overlay_damage.png");
+        this.loadTexture("ui/happy_overlay_damage_0.png");
+        this.loadTexture("ui/happy_overlay_damage_1.png");
+        this.loadTexture("ui/happy_overlay_damage_2.png");
+        this.loadTexture("ui/happy_overlay_full.png");
+        this.loadTexture("ui/heart_full.png");
+
         this.assetManager.finishLoading();
     }
 

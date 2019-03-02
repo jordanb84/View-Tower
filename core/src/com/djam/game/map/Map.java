@@ -10,6 +10,7 @@ import com.djam.game.entity.Entity;
 import com.djam.game.entity.EntityLiving;
 import com.djam.game.entity.impl.EntityLadder;
 import com.djam.game.entity.room.Business;
+import com.djam.game.happiness.Happiness;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +32,16 @@ public class Map {
 
     private OrthographicCamera textCamera;
 
+    private Happiness happiness;
+
     public Map() {
         this.business = new Business(this);
         this.currency = new Currency();
 
         this.textCamera = new OrthographicCamera();
         this.textCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        this.happiness = new Happiness(this);
     }
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
@@ -47,6 +52,8 @@ public class Map {
         }
 
         this.currency.render(batch, camera);
+
+        this.happiness.render(batch, camera);
     }
 
     public void update(OrthographicCamera camera) {
@@ -64,6 +71,8 @@ public class Map {
         for(Entity entity : this.getEntities()) {
             entity.update(camera);
         }
+
+        this.happiness.update(camera);
     }
 
     public List<Entity> getEntities() {
