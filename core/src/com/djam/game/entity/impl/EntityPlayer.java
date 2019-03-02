@@ -22,7 +22,7 @@ public class EntityPlayer extends EntityLiving {
 
     @Override
     public void update(OrthographicCamera camera) {
-        super.update(camera);
+        this.getDirectionalAnimation().update(camera);
 
         float speed = 50;
 
@@ -34,8 +34,16 @@ public class EntityPlayer extends EntityLiving {
             this.move(Direction.RIGHT, speed);
         }
 
+        if(Gdx.input.isKeyPressed(Input.Keys.E)) {
+            camera.position.add(1, 0, 0);
+            camera.update();
+        }
+
         if(this.isMoving()) {
+            System.out.println("MOVING");
             this.setDirectionalAnimation(this.runAnimation);
+            camera.position.set(this.getPosition().x, this.getPosition().y, 0);
+            camera.update();
         } else {
             this.setDirectionalAnimation(this.idleAnimation);
         }
@@ -43,6 +51,8 @@ public class EntityPlayer extends EntityLiving {
         if(!(this.getDirection() == Direction.DOWN)) {
             this.getDirectionalAnimation().setDirection(this.getDirection());
         }
+
+        this.updatePhysics();
     }
 
     @Override

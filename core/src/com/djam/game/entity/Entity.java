@@ -74,6 +74,8 @@ public abstract class Entity {
             this.moving = true;
         }
 
+        System.out.println("Collision: " + collisionAtNewPosition + " Moving " + this.isMoving());
+
         return collisionAtNewPosition;
     }
 
@@ -107,4 +109,7 @@ public abstract class Entity {
         return map;
     }
 
+    public void setMoving(boolean moving) {
+        this.moving = moving;
+    }
 }
