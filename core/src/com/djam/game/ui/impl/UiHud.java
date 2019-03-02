@@ -77,11 +77,11 @@ class NpcShop extends HorizontalGroup {
 
 class ShopButton extends ImageButton {
 
-    public ShopButton(int cost, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
+    public ShopButton(String productName, int cost, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
         super(new SpriteDrawable(new Sprite(upTexture)), new SpriteDrawable(new Sprite(downTexture)));
         this.getStyle().imageOver = new SpriteDrawable(new Sprite(hoverTexture));
 
-        TextTooltip tooltip = new TextTooltip("Cost: " + cost + " coins", SkinType.Arcade.SKIN);
+        TextTooltip tooltip = new TextTooltip(productName + " - " +" Cost: " + cost + " coins", SkinType.Arcade.SKIN);
         tooltip.setInstant(true);
 
         this.addListener(tooltip);
@@ -109,7 +109,7 @@ class NpcShopButton extends ShopButton {
     private Currency currency;
 
     public NpcShopButton(NpcType npcType, Business business, Currency currency, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
-        super(npcType.COST, skin, upTexture, downTexture, hoverTexture);
+        super(npcType.name() + " Employee", npcType.COST, skin, upTexture, downTexture, hoverTexture);
         this.npcType = npcType;
 
         this.business = business;
@@ -131,7 +131,7 @@ class RoomShopButton extends ShopButton {
     private Currency currency;
 
     public RoomShopButton(Business business, Currency currency, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
-        super(business.getRoomPrice(), skin, upTexture, downTexture, hoverTexture);
+        super("Employee Room", business.getRoomPrice(), skin, upTexture, downTexture, hoverTexture);
         this.business = business;
         this.currency = currency;
     }
