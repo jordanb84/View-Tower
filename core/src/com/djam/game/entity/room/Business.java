@@ -44,7 +44,7 @@ public class Business {
         this.placingSprite = new Sprite(Assets.getInstance().getTexture("building/room.png"));
         this.placingSprite.setAlpha(0.5f);
 
-        this.generateRoomGrid(3, 3);
+        this.generateRoomGrid(6, 8);
 
         //this.placingNpc = NpcType.Farmer;
     }
@@ -101,10 +101,13 @@ public class Business {
                                             desk.placeNpc(this.placingNpc);
 
                                             this.map.getCurrency().modifyBalance(-this.placingNpc.COST);
+
+                                            desk.unplace();
                                         }
 
                                         if(this.map.getCurrency().getBalance() <= this.placingNpc.COST) {
                                             this.placingNpc = null;
+                                            desk.unplace();
                                         }
                                     }
                                 }

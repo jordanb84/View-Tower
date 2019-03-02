@@ -7,7 +7,9 @@ import com.djam.game.animation.Animation;
 import com.djam.game.entity.Entity;
 import com.djam.game.entity.EntityNpc;
 import com.djam.game.entity.impl.EntityFarmer;
+import com.djam.game.entity.impl.EntityPlant;
 import com.djam.game.entity.impl.NpcType;
+import com.djam.game.entity.impl.PlantType;
 import com.djam.game.map.Map;
 
 public class EntityDesk extends Entity {
@@ -17,6 +19,8 @@ public class EntityDesk extends Entity {
     private boolean placing;
 
     private NpcType npcType;
+
+    private EntityPlant plant;
 
     public EntityDesk(Map map, Vector2 position) {
         super(map, position);
@@ -38,6 +42,10 @@ public class EntityDesk extends Entity {
     public void render(SpriteBatch batch, OrthographicCamera camera) {
         if(this.hasNpc()) {
             this.npc.render(batch, camera);
+
+            if(this.hasCrops()) {
+                this.plant.render(batch, camera);
+            }
         }
 
         if(this.placing) {
@@ -55,7 +63,12 @@ public class EntityDesk extends Entity {
         super.update(camera);
         if(this.hasNpc()) {
             this.npc.update(camera);
+
+            if(this.hasCrops()) {
+                this.plant.update(camera);
+            }
         }
+
     }
 
     public boolean hasNpc() {
@@ -74,7 +87,23 @@ public class EntityDesk extends Entity {
     public void placeNpc(NpcType npcType) {
         EntityNpc placedNpc = npcType.generateNpc(this.getMap(), new Vector2(this.getPosition()));
 
+        placedNpc.getPosition().add((-this.getWidth() - this.getWidth() / 2), 0);
+
         this.npc = placedNpc;
+
+        if(npcType == NpcType.Farmer) {
+            this.placeCrops(PlantType.Flowers);
+        }
+    }
+
+    private void placeCrops(PlantType plantType) {
+        this.plant = new EntityPlant(plantType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
+
+        this.plant.getPosition().add(0, this.getHeight());
+    }
+
+    public boolean hasCrops() {
+        return this.plant != null;
     }
 
 }

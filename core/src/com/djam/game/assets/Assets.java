@@ -83,6 +83,13 @@ public class Assets {
 
         this.loadTexture("building/ladder.png");
 
+        this.loadTexture("plant/flower_0.png");
+        this.loadTexture("plant/flower_1.png");
+        this.loadTexture("plant/flower_2.png");
+        this.loadTexture("plant/flower_3.png");
+        this.loadTexture("plant/flower_4.png");
+        this.loadTexture("plant/flower_5.png");
+
         this.assetManager.finishLoading();
     }
 

@@ -126,4 +126,8 @@ public abstract class Entity {
         return animation;
     }
 
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
+    }
+
 }
