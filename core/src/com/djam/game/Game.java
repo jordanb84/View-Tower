@@ -42,8 +42,12 @@ public class Game extends ApplicationAdapter {
 		this.stateManager.renderActiveState(this.batch, this.camera);
 		this.batch.end();
 	}
-	
-	@Override
+
+	public void resize (int width, int height) {
+		this.stateManager.resize(width, height);
+	}
+
+		@Override
 	public void dispose () {
 
 	}

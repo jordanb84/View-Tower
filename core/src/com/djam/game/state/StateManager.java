@@ -24,7 +24,11 @@ public class StateManager {
         this.getActiveState().update(camera);
     }
 
-    public void setActiveState(String name) {
+    public void resize (int width, int height) {
+
+    }
+
+        public void setActiveState(String name) {
         this.activeState = this.getState(name);
     }
 

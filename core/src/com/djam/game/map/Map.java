@@ -3,6 +3,7 @@ package com.djam.game.map;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.djam.game.economy.Currency;
 import com.djam.game.entity.Direction;
 import com.djam.game.entity.Entity;
 import com.djam.game.entity.EntityLiving;
@@ -22,8 +23,11 @@ public class Map {
 
     private List<Rectangle> collisionBodies = new ArrayList<Rectangle>();
 
+    private Currency currency;
+
     public Map() {
         this.business = new Business(this);
+        this.currency = new Currency();
     }
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
@@ -32,11 +36,15 @@ public class Map {
         for(Entity entity : this.getEntities()) {
             entity.render(batch, camera);
         }
+
+        this.currency.render(batch, camera);
     }
 
     public void update(OrthographicCamera camera) {
         this.business.update(camera);
         this.applyGravity();
+
+        this.currency.update(camera);
 
         this.getEntities().addAll(this.entitySpawnQueue);
         this.getEntities().removeAll(this.entityDespawnQueue);
@@ -85,6 +93,14 @@ public class Map {
         }
 
         return false;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public Currency getCurrency() {
+        return currency;
     }
 
 }

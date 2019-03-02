@@ -43,6 +43,8 @@ public class EntityDesk extends Entity {
         if(this.placing) {
             this.npcType.SPRITE.setPosition(this.getPosition().x, this.getPosition().y);
             this.npcType.SPRITE.draw(batch);
+
+            //System.out.println("Placing " + this.placing + " has npc " + this.hasNpc());
         }
 
         super.render(batch, camera);
@@ -70,13 +72,7 @@ public class EntityDesk extends Entity {
     }
 
     public void placeNpc(NpcType npcType) {
-        EntityNpc placedNpc = null;
-
-        switch(npcType) {
-            case Farmer:
-                placedNpc = new EntityFarmer(this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
-                break;
-        }
+        EntityNpc placedNpc = npcType.generateNpc(this.getMap(), new Vector2(this.getPosition()));
 
         this.npc = placedNpc;
     }

@@ -74,7 +74,7 @@ public abstract class Entity {
             this.moving = true;
         }
 
-        System.out.println("Collision: " + collisionAtNewPosition + " Moving " + this.isMoving());
+        //System.out.println("Collision: " + collisionAtNewPosition + " Moving " + this.isMoving());
 
         return collisionAtNewPosition;
     }

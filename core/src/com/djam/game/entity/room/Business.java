@@ -40,7 +40,7 @@ public class Business {
 
         this.generateRoomGrid(3, 3);
 
-        this.placingNpc = NpcType.Farmer;
+        //this.placingNpc = NpcType.Farmer;
     }
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
@@ -69,18 +69,24 @@ public class Business {
                         }
                     }
                 } else {
-                    for(EntityDesk desk : room.getDesks()) {
-                        //TODO Highlight chair, show faded placing NPC behind desk
-                        if(mouseBody.overlaps(desk.getBody())) {
-                            if(!desk.hasNpc()) {
-                                desk.placing(this.placingNpc);
+                    if(this.isPlacingNpc()) {
+                        for (EntityDesk desk : room.getDesks()) {
+                            //TODO Highlight chair, show faded placing NPC behind desk
+                            if (mouseBody.overlaps(desk.getBody())) {
+                                if (!desk.hasNpc()) {
+                                    desk.placing(this.placingNpc);
 
-                                if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-                                    desk.placeNpc(this.placingNpc);
+                                    if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                                        if(this.map.getCurrency().getBalance() >= this.placingNpc.COST) {
+                                            desk.placeNpc(this.placingNpc);
+
+                                            this.map.getCurrency().modifyBalance(-this.placingNpc.COST);
+                                        }
+                                    }
                                 }
+                            } else {
+                                desk.unplace();
                             }
-                        } else {
-                            desk.unplace();
                         }
                     }
                 }
@@ -88,6 +94,17 @@ public class Business {
 
             this.rooms.removeAll(roomRemoveQueue);
             this.rooms.addAll(roomAddQueue);
+
+            if(this.isPlacingNpc()) {
+                this.placingNpc.SPRITE.setScale(0.5f);
+                this.placingNpc.SPRITE.setPosition(this.mousePosition.x, this.mousePosition.y - this.placingNpc.SPRITE.getHeight() / 2);
+                this.placingNpc.SPRITE.draw(batch);
+                this.placingNpc.SPRITE.setScale(1);
+
+                if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
+                    this.placingNpc = null;
+                }
+            }
         }
     }
 
@@ -114,6 +131,15 @@ public class Business {
                 this.rooms.add(new EntityRoomBlank(this.map, roomPosition));
             }
         }
+    }
+
+    public boolean isPlacingNpc() {
+        return this.placingNpc != null;
+    }
+
+    public void startPlacingNpc(NpcType type) {
+        this.placingNpc = type;
+        this.placing = true;
     }
 
 }

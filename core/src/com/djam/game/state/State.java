@@ -18,7 +18,9 @@ public abstract class State {
 
     public abstract void update(OrthographicCamera camera);
 
-    public StateManager getManager() {
+    public abstract void resize (int width, int height);
+
+        public StateManager getManager() {
         return manager;
     }
 }

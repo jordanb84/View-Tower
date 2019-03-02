@@ -40,7 +40,7 @@ public class EntityPlayer extends EntityLiving {
         }
 
         if(this.isMoving()) {
-            System.out.println("MOVING");
+            //System.out.println("MOVING");
             this.setDirectionalAnimation(this.runAnimation);
             camera.position.set(this.getPosition().x, this.getPosition().y, 0);
             camera.update();

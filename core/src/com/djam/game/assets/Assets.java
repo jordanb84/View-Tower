@@ -2,6 +2,7 @@ package com.djam.game.assets;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.djam.game.animation.Animation;
 
 public class Assets {
@@ -70,6 +71,13 @@ public class Assets {
         this.loadTexture("npc/farmer_4.png");
         this.loadTexture("npc/farmer_5.png");
 
+        this.assetManager.load("skin/holo/Holo-dark-hdpi.json", Skin.class);
+
+        this.loadTexture("ui/farmer_overlay.png");
+        this.loadTexture("ui/coin.png");
+
+        this.assetManager.load("skin/arcade/arcade-ui.json", Skin.class);
+
         this.assetManager.finishLoading();
     }
 
@@ -83,6 +91,10 @@ public class Assets {
 
     public void loadTexture(String path) {
         this.assetManager.load(path, Texture.class);
+    }
+
+    public Skin getSkin(String path) {
+        return this.assetManager.get(path, Skin.class);
     }
 
 }
