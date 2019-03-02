@@ -57,7 +57,9 @@ public class Assets {
         this.loadTexture("player/player_idle_10_left.png");
         this.loadTexture("player/player_idle_11_left.png");
 
-
+        this.loadTexture("building/room.png");
+        this.loadTexture("building/room_blank.png");
+        this.loadTexture("building/room_invisible.png");
 
         this.assetManager.finishLoading();
     }

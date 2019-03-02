@@ -55,4 +55,15 @@ public abstract class EntityLiving extends Entity {
         this.setDirection(direction);
         return super.move(direction, speed);
     }
+
+    @Override
+    public float getWidth() {
+        return this.directionalAnimation.getCurrentAnimation().getCurrentFrame().getSprite().getWidth();
+    }
+
+    @Override
+    public float getHeight() {
+        return this.directionalAnimation.getCurrentAnimation().getCurrentFrame().getSprite().getHeight();
+    }
+
 }

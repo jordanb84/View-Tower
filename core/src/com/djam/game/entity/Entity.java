@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.djam.game.animation.Animation;
 import com.djam.game.map.Map;
@@ -17,6 +18,8 @@ public abstract class Entity {
     private Animation animation;
 
     private boolean moving;
+
+    private Rectangle body = new Rectangle();
 
     public Entity(Map map, Vector2 position) {
         this.map = map;
@@ -35,6 +38,7 @@ public abstract class Entity {
 
     public void updatePhysics() {
         this.moving = false;
+        this.updateBody();
     }
 
     public boolean move(Direction direction, float speed) {
@@ -66,4 +70,19 @@ public abstract class Entity {
         return moving;
     }
 
+    public void updateBody() {
+        this.getBody().set(this.getPosition().x, this.getPosition().y, this.getWidth(), this.getHeight());
+    }
+
+    public float getWidth() {
+        return this.animation.getCurrentFrame().getSprite().getWidth();
+    }
+
+    public float getHeight() {
+        return this.animation.getCurrentFrame().getSprite().getHeight();
+    }
+
+    public Rectangle getBody() {
+        return body;
+    }
 }
