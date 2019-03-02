@@ -30,7 +30,15 @@ public class DirectionalAnimation {
     }
 
     public Animation getCurrentAnimation() {
+        System.out.println("Getting for direction " + this.direction);
+
+        for(HashMap.Entry<Direction, Animation> entry : this.animations.entrySet()) {
+            System.out.println(entry.getKey() + " is " + entry.getValue());
+        }
         return this.animations.get(this.direction);
     }
 
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 }

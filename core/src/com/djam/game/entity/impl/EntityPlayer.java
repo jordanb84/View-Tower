@@ -33,11 +33,19 @@ public class EntityPlayer extends EntityLiving {
         if(Gdx.input.isKeyPressed(Input.Keys.D)) {
             this.move(Direction.RIGHT, speed);
         }
+
+        if(this.isMoving()) {
+            this.setDirectionalAnimation(this.runAnimation);
+        } else {
+            this.setDirectionalAnimation(this.idleAnimation);
+        }
+
+        this.getDirectionalAnimation().setDirection(this.getDirection());
     }
 
     @Override
     public Animation setupAnimation() {
-        Animation idle = new Animation(0.3f);
+        Animation idle = new Animation(0.2f);
 
         idle.addFrame("player/player_idle_0.png");
         idle.addFrame("player/player_idle_1.png");
@@ -52,7 +60,22 @@ public class EntityPlayer extends EntityLiving {
         idle.addFrame("player/player_idle_10.png");
         idle.addFrame("player/player_idle_11.png");
 
-        Animation run = new Animation(0.3f);
+        Animation idleLeft = new Animation(0.2f);
+
+        idleLeft.addFrame("player/player_idle_0_left.png");
+        idleLeft.addFrame("player/player_idle_1_left.png");
+        idleLeft.addFrame("player/player_idle_2_left.png");
+        idleLeft.addFrame("player/player_idle_3_left.png");
+        idleLeft.addFrame("player/player_idle_4_left.png");
+        idleLeft.addFrame("player/player_idle_5_left.png");
+        idleLeft.addFrame("player/player_idle_6_left.png");
+        idleLeft.addFrame("player/player_idle_7_left.png");
+        idleLeft.addFrame("player/player_idle_8_left.png");
+        idleLeft.addFrame("player/player_idle_9_left.png");
+        idleLeft.addFrame("player/player_idle_10_left.png");
+        idleLeft.addFrame("player/player_idle_11_left.png");
+
+        Animation run = new Animation(0.2f);
 
         run.addFrame("player/player_run_0.png");
         run.addFrame("player/player_run_1.png");
@@ -62,7 +85,7 @@ public class EntityPlayer extends EntityLiving {
         run.addFrame("player/player_run_5.png");
         run.addFrame("player/player_run_6.png");
 
-        Animation runLeft = new Animation(0.3f);
+        Animation runLeft = new Animation(0.2f);
 
         runLeft.addFrame("player/player_run_0_left.png");
         runLeft.addFrame("player/player_run_1_left.png");
@@ -74,11 +97,15 @@ public class EntityPlayer extends EntityLiving {
 
         this.idleAnimation = new DirectionalAnimation(Direction.RIGHT);
         this.idleAnimation.addAnimation(Direction.RIGHT, idle);
-        this.idleAnimation.addAnimation(Direction.LEFT, idle);
+        this.idleAnimation.addAnimation(Direction.LEFT, idleLeft);
 
         this.runAnimation = new DirectionalAnimation(Direction.RIGHT);
         this.runAnimation.addAnimation(Direction.RIGHT, run);
         this.runAnimation.addAnimation(Direction.LEFT, runLeft);
+
+        this.setDirectionalAnimation(this.idleAnimation);
+
+        System.out.println("Setup animations");
 
         return idle;
     }

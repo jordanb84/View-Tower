@@ -16,6 +16,8 @@ public abstract class Entity {
 
     private Animation animation;
 
+    private boolean moving;
+
     public Entity(Map map, Vector2 position) {
         this.map = map;
         this.position = position;
@@ -27,7 +29,12 @@ public abstract class Entity {
     }
 
     public void update(OrthographicCamera camera) {
+        this.updatePhysics();
         this.animation.update(camera);
+    }
+
+    public void updatePhysics() {
+        this.moving = false;
     }
 
     public boolean move(Direction direction, float speed) {
@@ -44,6 +51,8 @@ public abstract class Entity {
 
         this.getPosition().add(velocity.x * Gdx.graphics.getDeltaTime(), velocity.y * Gdx.graphics.getDeltaTime());
 
+        this.moving = true;
+
         return true;
     }
 
@@ -52,5 +61,9 @@ public abstract class Entity {
     }
 
     public abstract Animation setupAnimation();
+
+    public boolean isMoving() {
+        return moving;
+    }
 
 }

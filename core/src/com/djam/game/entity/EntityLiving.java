@@ -11,9 +11,12 @@ public abstract class EntityLiving extends Entity {
 
     private DirectionalAnimation directionalAnimation;
 
+    private Direction direction;
+
     public EntityLiving(Map map, Vector2 position) {
         super(map, position);
-        this.directionalAnimation = new DirectionalAnimation(Direction.RIGHT);
+        this.direction = Direction.RIGHT;
+        //this.directionalAnimation = new DirectionalAnimation(Direction.LEFT);
     }
 
     @Override
@@ -23,6 +26,7 @@ public abstract class EntityLiving extends Entity {
 
     @Override
     public void update(OrthographicCamera camera) {
+        this.updatePhysics();
         this.directionalAnimation.update(camera);
     }
 
@@ -38,4 +42,17 @@ public abstract class EntityLiving extends Entity {
         this.directionalAnimation = directionalAnimation;
     }
 
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    @Override
+    public boolean move(Direction direction, float speed) {
+        this.setDirection(direction);
+        return super.move(direction, speed);
+    }
 }
