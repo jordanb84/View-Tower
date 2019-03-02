@@ -41,6 +41,8 @@ public class UiHud extends Ui {
 
         this.getRootTable().addActor(this.npcShop);
         this.npcShop.setPosition(this.npcShop.getX() + 20, npcShop.getY() - 10);
+
+
     }
 
     @Override
@@ -58,6 +60,16 @@ class NpcShop extends HorizontalGroup {
             ShopButton npcButton = new NpcShopButton(npc, business, currency, skin, npc.TEXTURE, npc.TEXTURE, npc.OVERLAY_TEXTURE);
 
             this.addActor(npcButton);
+
+            Texture roomShopIcon = Assets.getInstance().getTexture("ui/room_icon.png");
+            Texture roomShopIconHover = Assets.getInstance().getTexture("ui/room_icon_hover.png");
+
+            RoomShopButton roomShopButton = new RoomShopButton(business, currency, skin, roomShopIcon, roomShopIcon, roomShopIconHover);
+
+            //roomShopButton.setPosition(roomShopButton.getX() + 100, roomShopButton.getY() - 5);
+
+            this.addActor(roomShopButton);
+
         }
     }
 
@@ -107,7 +119,29 @@ class NpcShopButton extends ShopButton {
     @Override
     public void purchase(InputEvent event, float x, float y) {
         super.purchase(event, x, y);
+        this.business.stopPlacingRoom();
         this.business.startPlacingNpc(this.npcType);
+    }
+
+}
+
+class RoomShopButton extends ShopButton {
+
+    private Business business;
+    private Currency currency;
+
+    public RoomShopButton(Business business, Currency currency, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
+        super(business.getRoomPrice(), skin, upTexture, downTexture, hoverTexture);
+        this.business = business;
+        this.currency = currency;
+    }
+
+    @Override
+    public void purchase(InputEvent event, float x, float y) {
+        super.purchase(event, x, y);
+        //this.business.startPlacingNpc(this.npcType);
+        this.business.stopPlacingNpc();
+        this.business.startPlacingRoom();
     }
 
 }

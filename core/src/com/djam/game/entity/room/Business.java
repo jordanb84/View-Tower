@@ -30,10 +30,16 @@ public class Business {
 
     private NpcType placingNpc;
 
+    private boolean placingRoom;
+
+    private int roomPrice = 100;
+
     public Business(Map map) {
         this.map = map;
 
-        this.placing = true;
+        //this.placing = true;
+
+        //this.placingRoom = true;
 
         this.placingSprite = new Sprite(Assets.getInstance().getTexture("building/room.png"));
         this.placingSprite.setAlpha(0.5f);
@@ -49,7 +55,7 @@ public class Business {
         }
 
         //TODO render red overlay if you can't place it, possibly green if you can
-        if(this.placing) {
+        if(this.placing || this.placingRoom) {
             Rectangle mouseBody = new Rectangle(this.mousePosition.x, this.mousePosition.y, 0, 0);
 
             List<EntityRoom> roomRemoveQueue = new ArrayList<EntityRoom>();
@@ -59,13 +65,22 @@ public class Business {
 
             for(EntityRoom room : this.rooms) {
                 if(room instanceof EntityRoomBlank) {
-                    if(mouseBody.overlaps(room.getBody())) {
-                        this.placingSprite.setPosition(room.getPosition().x, room.getPosition().y);
-                        this.placingSprite.draw(batch);
+                    if(this.placingRoom) {
+                        if (mouseBody.overlaps(room.getBody())) {
+                            this.placingSprite.setPosition(room.getPosition().x, room.getPosition().y);
+                            this.placingSprite.draw(batch);
 
-                        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-                            roomRemoveQueue.add(room);
-                            roomAddQueue.add(new EntityRoom(this.map, new Vector2(room.getPosition())));
+                            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                                if(this.map.getCurrency().getBalance() >= this.roomPrice) {
+                                    roomRemoveQueue.add(room);
+                                    roomAddQueue.add(new EntityRoom(this.map, new Vector2(room.getPosition())));
+                                    this.map.getCurrency().modifyBalance(-this.roomPrice);
+                                }
+
+                                if(this.map.getCurrency().getBalance() < this.roomPrice) {
+                                    this.stopPlacingRoom();
+                                }
+                            }
                         }
                     }
                 } else {
@@ -83,7 +98,7 @@ public class Business {
                                             this.map.getCurrency().modifyBalance(-this.placingNpc.COST);
                                         }
 
-                                        if(this.map.getCurrency().getBalance() <= 0) {
+                                        if(this.map.getCurrency().getBalance() <= this.placingNpc.COST) {
                                             this.placingNpc = null;
                                         }
                                     }
@@ -144,6 +159,22 @@ public class Business {
     public void startPlacingNpc(NpcType type) {
         this.placingNpc = type;
         this.placing = true;
+    }
+
+    public void startPlacingRoom() {
+        this.placingRoom = true;
+    }
+
+    public void stopPlacingRoom() {
+        this.placingRoom = false;
+    }
+
+    public int getRoomPrice() {
+        return roomPrice;
+    }
+
+    public void stopPlacingNpc() {
+        this.placingNpc = null;
     }
 
 }

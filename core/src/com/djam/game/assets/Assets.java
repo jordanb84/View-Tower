@@ -78,6 +78,9 @@ public class Assets {
 
         this.assetManager.load("skin/arcade/arcade-ui.json", Skin.class);
 
+        this.loadTexture("ui/room_icon.png");
+        this.loadTexture("ui/room_icon_hover.png");
+
         this.assetManager.finishLoading();
     }
 
