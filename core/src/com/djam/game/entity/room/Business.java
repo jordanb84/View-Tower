@@ -155,6 +155,7 @@ public class Business {
         for(int y = 0; y < gridHeight; y++) {
             for(int x = 0; x < gridWidth; x++) {
                 Vector2 roomPosition = new Vector2(x * roomWidth, y * roomHeight);
+                roomPosition.add(0, 0);
                 this.rooms.add(new EntityRoomBlank(this.map, roomPosition));
             }
         }

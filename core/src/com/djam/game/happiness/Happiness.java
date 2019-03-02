@@ -70,7 +70,7 @@ public class Happiness {
 
         float diff = - 64 * (this.percentage / 100) + 64;
 
-        System.out.println("Diff " + diff);
+        //System.out.println("Diff " + diff);
 
         this.happinessOverlayFull.setPosition(this.position.x + diff, this.position.y);
         //this.happinessOverlayFull.setScale(this.scale * (this.percentage / 100), this.scale);
@@ -91,8 +91,6 @@ public class Happiness {
         if(Gdx.input.isKeyJustPressed(Input.Keys.O)) {
             this.percentage -= 10;
         }
-
-        
     }
 
     public float getPercentage() {

@@ -34,6 +34,8 @@ public class Map {
 
     private Happiness happiness;
 
+    private Background background;
+
     public Map() {
         this.business = new Business(this);
         this.currency = new Currency();
@@ -42,9 +44,13 @@ public class Map {
         this.textCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         this.happiness = new Happiness(this);
+
+        this.background = new Background(this);
     }
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
+        this.background.render(batch, camera);
+
         this.business.render(batch, camera);
 
         for(Entity entity : this.getEntities()) {

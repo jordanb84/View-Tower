@@ -99,6 +99,18 @@ public class Assets {
         this.loadTexture("ui/happy_overlay_full.png");
         this.loadTexture("ui/heart_full.png");
 
+        this.loadTexture("background/1.png");
+        this.loadTexture("background/2.png");
+        this.loadTexture("background/3.png");
+        this.loadTexture("background/4.png");
+        this.loadTexture("background/5.png");
+        this.loadTexture("background/6.png");
+        this.loadTexture("background/7.png");
+
+        this.loadTexture("background/layer_0_sky.png");
+        this.loadTexture("background/layer_1_mountain.png");
+        this.loadTexture("background/layer_2_grass.png");
+
         this.assetManager.finishLoading();
     }
 
