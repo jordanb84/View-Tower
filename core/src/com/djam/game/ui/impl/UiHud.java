@@ -109,7 +109,7 @@ class NpcShopButton extends ShopButton {
     private Currency currency;
 
     public NpcShopButton(NpcType npcType, Business business, Currency currency, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
-        super(npcType.name() + " Employee", npcType.COST, skin, upTexture, downTexture, hoverTexture);
+        super(npcType.name() + " Employee\n(Place at a room table to build)\n", npcType.COST, skin, upTexture, downTexture, hoverTexture);
         this.npcType = npcType;
 
         this.business = business;
@@ -131,7 +131,7 @@ class RoomShopButton extends ShopButton {
     private Currency currency;
 
     public RoomShopButton(Business business, Currency currency, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
-        super("Employee Room", business.getRoomPrice(), skin, upTexture, downTexture, hoverTexture);
+        super("Employee Room\n(Place at a grey area to build)\n", business.getRoomPrice(), skin, upTexture, downTexture, hoverTexture);
         this.business = business;
         this.currency = currency;
     }

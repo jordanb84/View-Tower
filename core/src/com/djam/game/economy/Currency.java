@@ -37,7 +37,7 @@ public class Currency {
         this.icon.setPosition(position.x, position.y);
         this.icon.draw(batch);
 
-        TextType.Default.FONT.draw(batch, "" + this.balance, position.x + 25, position.y + 5);
+        TextType.Default.FONT.draw(batch, "" + this.balance, position.x + 25, position.y + 12);
     }
 
     public void update(OrthographicCamera camera) {
