@@ -2,6 +2,6 @@ package com.djam.game.entity;
 
 public enum  Direction {
 
-    LEFT, RIGHT
+    LEFT, RIGHT, UP, DOWN
 
 }

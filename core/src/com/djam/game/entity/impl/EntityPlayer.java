@@ -40,7 +40,9 @@ public class EntityPlayer extends EntityLiving {
             this.setDirectionalAnimation(this.idleAnimation);
         }
 
-        this.getDirectionalAnimation().setDirection(this.getDirection());
+        if(!(this.getDirection() == Direction.DOWN)) {
+            this.getDirectionalAnimation().setDirection(this.getDirection());
+        }
     }
 
     @Override

@@ -51,13 +51,30 @@ public abstract class Entity {
             case RIGHT:
                 velocity.set(speed, 0);
                 break;
+            case UP:
+                velocity.set(0, speed);
+                break;
+            case DOWN:
+                velocity.set(0, -speed);
+                break;
         }
 
-        this.getPosition().add(velocity.x * Gdx.graphics.getDeltaTime(), velocity.y * Gdx.graphics.getDeltaTime());
+        float velocityX = velocity.x * Gdx.graphics.getDeltaTime();
+        float velocityY = velocity.y * Gdx.graphics.getDeltaTime();
 
-        this.moving = true;
+        Vector2 newPosition = new Vector2(this.getPosition().x + velocityX, this.getPosition().y + velocityY);
 
-        return true;
+        Rectangle newPositionBody = new Rectangle(newPosition.x, newPosition.y, this.getWidth(), this.getHeight());
+
+        boolean collisionAtNewPosition = this.getMap().collisionAt(newPositionBody);
+
+        if(!collisionAtNewPosition) {
+            this.getPosition().add(velocity.x * Gdx.graphics.getDeltaTime(), velocity.y * Gdx.graphics.getDeltaTime());
+
+            this.moving = true;
+        }
+
+        return collisionAtNewPosition;
     }
 
     public Vector2 getPosition() {
@@ -85,4 +102,9 @@ public abstract class Entity {
     public Rectangle getBody() {
         return body;
     }
+
+    public Map getMap() {
+        return map;
+    }
+
 }
