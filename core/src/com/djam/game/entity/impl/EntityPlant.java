@@ -10,6 +10,7 @@ import com.djam.game.entity.EntityNpcItem;
 import com.djam.game.map.Map;
 import com.djam.game.ui.text.TextType;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class EntityPlant extends EntityNpcItem {
@@ -45,8 +46,11 @@ public class EntityPlant extends EntityNpcItem {
         super.update(camera);
         if(this.getAnimation().isComplete()) {
             this.getAnimation().setComplete(false);
-            this.getMap().spawn(new EntityCoin(this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y), this.plantType.PROFIT));
-            this.getMap().getCurrency().modifyBalance(this.plantType.PROFIT);
+
+            float profitChange = this.plantType.PROFIT * this.getMap().getAverageHappiness();
+
+            this.getMap().spawn(new EntityCoin(this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y), profitChange));
+            this.getMap().getCurrency().modifyBalance(profitChange);
         }
     }
 
@@ -62,9 +66,9 @@ class EntityCoin extends Entity {
 
     private float speed = 70;
 
-    private int value;
+    private float value;
 
-    public EntityCoin(Map map, Vector2 position, int value) {
+    public EntityCoin(Map map, Vector2 position, float value) {
         super(map, position);
         this.movingUp = true;
         this.lifespan = new Random().nextInt(3);
@@ -110,6 +114,9 @@ class EntityCoin extends Entity {
         //Vector2 textPosition = new Vector2(this.getPosition().x + camera.position.x + 220, this.getPosition().y + camera.position.y + 160);
 
        // batch.setProjectionMatrix(textCamera.combined);
-        TextType.Default_Medium.FONT.draw(batch, "+" + this.value, this.getPosition().x + 16, this.getPosition().y + 12);
+
+        String formattedValue = new DecimalFormat("#.##").format(this.value); //"1.2";
+
+        TextType.Default_Medium.FONT.draw(batch, "+" + formattedValue, this.getPosition().x + 16, this.getPosition().y + 12);
     }
 }

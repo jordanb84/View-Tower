@@ -170,4 +170,11 @@ public class Map {
         return research;
     }
 
+    public Happiness getHappiness() {
+        return happiness;
+    }
+
+    public float getAverageHappiness() {
+        return this.getHappiness().getPercentage() / 100;
+    }
 }

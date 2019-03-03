@@ -9,9 +9,11 @@ import com.djam.game.assets.Assets;
 import com.djam.game.ui.text.TextType;
 import com.sun.org.apache.xpath.internal.operations.Or;
 
+import java.text.DecimalFormat;
+
 public class Currency {
 
-    private int balance;
+    private float balance;
 
     private Sprite icon;
 
@@ -37,19 +39,21 @@ public class Currency {
         this.icon.setPosition(position.x, position.y);
         this.icon.draw(batch);
 
-        TextType.Default.FONT.draw(batch, "" + this.balance + " coins", position.x + 25, position.y + 12);
+        String formattedValue = new DecimalFormat("#.##").format(this.balance); //"1.2";
+
+        TextType.Default.FONT.draw(batch, "" + formattedValue + " coins", position.x + 25, position.y + 12);
     }
 
     public void update(OrthographicCamera camera) {
 
     }
 
-    public void modifyBalance(int modification) {
+    public void modifyBalance(float modification) {
         this.balance += modification;
     }
 
-    public int getBalance() {
-        return balance;
+    public float getBalance() {
+        return this.balance;
     }
 
 }

@@ -60,7 +60,7 @@ class EntityResearch extends Entity {
 
     private float lifespan;
 
-    private float speed = 120;
+    private float speed = 60;
 
     private int value;
 
