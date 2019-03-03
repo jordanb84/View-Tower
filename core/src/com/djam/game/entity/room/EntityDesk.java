@@ -109,22 +109,19 @@ public class EntityDesk extends Entity {
             case Experienced_Farmer_Farmer:
                 this.placeItem(NpcItemType.SeniorFlowers);
                 break;
+            case Head_Farmer:
+                this.placeItem(NpcItemType.HeadFlowers);
+                break;
         }
 
     }
 
     private void placeItem(NpcItemType itemType) {
         switch(itemType) {
-            case Flowers:
-                this.npcItem = new EntityPlant(itemType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
-                break;
             case Bookshelf:
                 this.npcItem = new EntityBookshelf(itemType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
                 break;
-            case SuperFlowers:
-                this.npcItem = new EntityPlant(itemType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
-                break;
-            case SeniorFlowers:
+            default:
                 this.npcItem = new EntityPlant(itemType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
                 break;
         }

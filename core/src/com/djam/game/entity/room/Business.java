@@ -64,7 +64,7 @@ public class Business {
 
         this.roomIcon = new Sprite(Assets.getInstance().getTexture("ui/room_icon.png"));
 
-        this.gridWidth = 4;
+        this.gridWidth = 3;
         this.generateRoomGrid(this.gridWidth, 2);
 
         //this.addBlankRow();

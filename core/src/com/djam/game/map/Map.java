@@ -53,7 +53,7 @@ public class Map {
 
         this.background = new Background(this);
 
-        EntityPlayer player = new EntityPlayer(this, new Vector2(640, 30));
+        EntityPlayer player = new EntityPlayer(this, new Vector2(377, 30));
 
         this.spawn(player);
 

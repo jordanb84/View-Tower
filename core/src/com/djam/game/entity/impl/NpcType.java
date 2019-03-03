@@ -14,7 +14,8 @@ public enum NpcType {
     Farmer("Farmer", "npc/farmer_0.png", "ui/farmer_overlay.png", 20),
     Researcher("Researcher", "npc/researcher_0.png", "ui/researcher_overlay.png", 35),
     Senior_Farmer(null, null, UnlockTypes.EXPERIENCED_FARMER, "Experienced Farmer", 5, "npc/experiencedfarmer_0.png", "ui/experiencedfarmer_icon_overlay.png", "ui/experiencedfarmer_locked.png", 40),
-    Experienced_Farmer_Farmer("Experienced Farmer", UnlockTypes.EXPERIENCED_FARMER, UnlockTypes.SENIOR_FARMER, "Senior Farmer", 10, "npc/senior_farmer_0.png", "ui/senior_farmer_overlay.png", "ui/senior_farmer_locked.png", 80);
+    Experienced_Farmer_Farmer("Experienced Farmer", UnlockTypes.EXPERIENCED_FARMER, UnlockTypes.SENIOR_FARMER, "Senior Farmer", 10, "npc/senior_farmer_0.png", "ui/senior_farmer_overlay.png", "ui/senior_farmer_locked.png", 80),
+    Head_Farmer("Senior Farmer", UnlockTypes.SENIOR_FARMER, UnlockTypes.HEAD_FARMER, "Head of Farming", 10, "npc/head_farmer_0.png", "ui/head_farmer_overlay.png", "ui/head_farmer_locked.png", 160)
 
     ;
 
@@ -34,6 +35,11 @@ public enum NpcType {
         this.NAME = name;
     }
 
+    /**
+     *
+     * @param requiredType Required unlock to unlock this NPC
+     * @param unlockType Next NPC unlock achieved by unlocking this
+     */
     NpcType(String requirement, UnlockTypes requiredType, UnlockTypes unlockType, String name, int unlockCost, String path, String overlayPath, String lockedPath, int cost) {
         this.TEXTURE = Assets.getInstance().getTexture(path);
 
@@ -94,6 +100,9 @@ public enum NpcType {
                 break;
             case Experienced_Farmer_Farmer:
                 npc = new EntityExperiencedFarmer(room, map, position);
+                break;
+            case Head_Farmer:
+                npc = new EntityHeadFarmer(room, map, position);
                 break;
         }
 

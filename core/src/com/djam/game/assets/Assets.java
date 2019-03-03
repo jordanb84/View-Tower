@@ -178,6 +178,17 @@ public class Assets {
         this.loadTexture("ui/experiencedfarmer_icon_overlay.png");
         this.loadTexture("ui/experiencedfarmer_locked.png");
 
+        this.loadTexture("ui/head_farmer_icon.png");
+        this.loadTexture("ui/head_farmer_locked.png");
+        this.loadTexture("ui/head_farmer_overlay.png");
+
+        this.loadTexture("npc/head_farmer_0.png");
+        this.loadTexture("npc/head_farmer_1.png");
+        this.loadTexture("npc/head_farmer_2.png");
+        this.loadTexture("npc/head_farmer_3.png");
+        this.loadTexture("npc/head_farmer_4.png");
+        this.loadTexture("npc/head_farmer_5.png");
+
         this.assetManager.finishLoading();
     }
 

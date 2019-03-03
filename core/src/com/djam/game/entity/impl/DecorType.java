@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum  DecorType {
-    Painting("Painting", "Increases employee happiness! Place in any room", 25, 0.3f, "decor/painting_0.png", "decor/painting_1.png", "decor/painting_2.png", "decor/painting_3.png", "decor/painting_4.png", "decor/painting_5.png", "decor/painting_6.png", "decor/painting_7.png")
+    Painting("Painting", "Increases happiness in a room! Place in any room", 25, 0.3f, "decor/painting_0.png", "decor/painting_1.png", "decor/painting_2.png", "decor/painting_3.png", "decor/painting_4.png", "decor/painting_5.png", "decor/painting_6.png", "decor/painting_7.png")
 
     ;
 
