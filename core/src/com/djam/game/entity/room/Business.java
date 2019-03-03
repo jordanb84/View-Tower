@@ -52,6 +52,8 @@ public class Business {
 
     private List<UnlockTypes> unlocks = new ArrayList<UnlockTypes>();
 
+    private boolean hover;
+
     public Business(Map map) {
         this.map = map;
 
@@ -78,6 +80,8 @@ public class Business {
             room.render(batch, camera);
         }
 
+        System.out.println("Hovering " + this.isHover());
+
         //TODO render red overlay if you can't place it, possibly green if you can
         if(this.placing || this.placingRoom || this.placingDecor) {
             Rectangle mouseBody = new Rectangle(this.mousePosition.x, this.mousePosition.y, 0, 0);
@@ -94,7 +98,7 @@ public class Business {
                             this.placingSprite.setPosition(room.getPosition().x, room.getPosition().y);
                             this.placingSprite.draw(batch);
 
-                            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && !(this.isHover())) {
                                 if(this.map.getCurrency().getBalance() >= this.roomPrice) {
                                     roomRemoveQueue.add(room);
 
@@ -120,7 +124,7 @@ public class Business {
                                 if (!desk.hasNpc()) {
                                     desk.placing(this.placingNpc);
 
-                                    if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                                    if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && !this.isHover()) {
                                         if(this.map.getCurrency().getBalance() >= this.placingNpc.COST) {
                                             desk.placeNpc(this.placingNpc);
 
@@ -149,7 +153,7 @@ public class Business {
 
                                 Rectangle newBody = new Rectangle(this.mousePosition.x, this.mousePosition.y, this.currentDecorSprite.getWidth(), this.currentDecorSprite.getHeight());
                                 if(!room.bodyOverlapsDecor(newBody)) {
-                                    if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                                    if(Gdx.input.isButtonPressed(Input.Buttons.LEFT) && !this.isHover()) {
                                         if (this.release) {
                                             if (this.map.getCurrency().getBalance() >= this.currentDecor.PRICE) {
                                                 Vector2 position = new Vector2(this.mousePosition.x, this.mousePosition.y);
@@ -371,6 +375,14 @@ public class Business {
         }
 
         return false;
+    }
+
+    public boolean isHover() {
+        return hover;
+    }
+
+    public void setHover(boolean hover) {
+        this.hover = hover;
     }
 
 }

@@ -87,8 +87,9 @@ public class Happiness {
         this.currentHeart.setPosition(this.position.x, this.position.y);
         this.currentHeart.draw(batch);
 
-        TextType.Default.FONT.draw(batch, "Employee Happiness", this.position.x - (12 * this.scale) + 12, this.position.y);
+        TextType.Default.FONT.draw(batch, "Employee View", this.position.x - (12 * this.scale) + 12, this.position.y);
     }
+
 
     public void update(OrthographicCamera camera) {
         if(Gdx.input.isKeyJustPressed(Input.Keys.P)) {
@@ -124,7 +125,7 @@ public class Happiness {
                 if(employees > 0) {
                     float average = happinessSum / employees;
 
-                    System.out.println("Average happiness is " + average + " from " + employees + " employees");
+                    System.out.println("Average view is " + average + " from " + employees + " employees");
 
                     this.percentage = average;
                 }

@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
@@ -17,6 +19,8 @@ import com.djam.game.entity.impl.NpcType;
 import com.djam.game.entity.room.Business;
 import com.djam.game.ui.SkinType;
 import com.djam.game.ui.Ui;
+
+import static java.lang.System.out;
 
 public class UiHud extends Ui {
 
@@ -94,6 +98,33 @@ class NpcShop extends HorizontalGroup {
         PurchaseFloorShopButton purchaseFloorShopButton = new PurchaseFloorShopButton(business, skin, 25);
 
         this.addActor(purchaseFloorShopButton);
+
+        this.addListener(new HoverListener(business));
+    }
+
+
+}
+
+class HoverListener extends InputListener {
+
+    private Business business;
+
+    public HoverListener(Business business) {
+        this.business = business;
+    }
+
+    @Override
+    public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+        super.enter(event, x, y, pointer, fromActor);
+        System.out.println("Enter");
+        this.business.setHover(true);
+    }
+
+    @Override
+    public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+        super.exit(event, x, y, pointer, toActor);
+        System.out.println("Exit");
+        this.business.setHover(false);
     }
 
 }
@@ -218,7 +249,7 @@ class LockedShopButton extends ShopButton {
                         resetTextures();
                     }
 
-                    System.out.println("Clicked");
+                    out.println("Clicked");
                 }
             }
         });
@@ -242,7 +273,7 @@ class LockedShopButton extends ShopButton {
 
         this.setStyle(style);
 
-        System.out.println("Reset textures");
+        out.println("Reset textures");
     }
 
     public TextTooltip getTooltip() {
@@ -287,7 +318,7 @@ class LockedNpcShopButton extends LockedShopButton {
     public void unlock() {
         super.unlock();
         this.business.getUnlocks().add(this.npcType.UNLOCK_TYPE);
-        System.out.println("Unlocked " + this.npcType.UNLOCK_TYPE.name());
+        out.println("Unlocked " + this.npcType.UNLOCK_TYPE.name());
     }
 
     @Override

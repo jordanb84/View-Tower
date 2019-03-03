@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum  DecorType {
-    Painting("Painting", "Increases happiness in a room! Place in any room", 25, 0.3f, "decor/painting_0.png", "decor/painting_1.png", "decor/painting_2.png", "decor/painting_3.png", "decor/painting_4.png", "decor/painting_5.png", "decor/painting_6.png", "decor/painting_7.png")
+    Painting("Painting", "Improves employee view in a room! Place in any room", 25, 0.3f, "decor/painting_0.png", "decor/painting_1.png", "decor/painting_2.png", "decor/painting_3.png", "decor/painting_4.png", "decor/painting_5.png", "decor/painting_6.png", "decor/painting_7.png")
 
     ;
 
@@ -18,7 +18,7 @@ public enum  DecorType {
         this.HAPPINESS_BONUS = happinessBonus;
 
         this.NAME = name;
-        this.DESCRIPTION = description;
+        this.DESCRIPTION = description + "\n(Better view helps employees make more money)";
 
         this.PRICE = price;
     }
@@ -33,7 +33,7 @@ public enum  DecorType {
         this.HAPPINESS_BONUS = happinessBonus;
 
         this.NAME = name;
-        this.DESCRIPTION = description;
+        this.DESCRIPTION = description + "\n(Better view helps employees make more money)";
 
         this.PRICE = price;
     }
