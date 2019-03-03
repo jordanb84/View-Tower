@@ -16,13 +16,12 @@ public class EntitySeniorFarmer extends EntityFarmer {
     public Animation setupAnimation() {
         Animation animation = new Animation(0.2f);
 
-        animation.addFrame("npc/senior_farmer_0.png");
-        animation.addFrame("npc/senior_farmer_1.png");
-        animation.addFrame("npc/senior_farmer_2.png");
-        animation.addFrame("npc/senior_farmer_3.png");
-        animation.addFrame("npc/senior_farmer_4.png");
-        animation.addFrame("npc/senior_farmer_5.png");
-
+        animation.addFrame("npc/experiencedfarmer_0.png");
+        animation.addFrame("npc/experiencedfarmer_1.png");
+        animation.addFrame("npc/experiencedfarmer_2.png");
+        animation.addFrame("npc/experiencedfarmer_3.png");
+        animation.addFrame("npc/experiencedfarmer_4.png");
+        animation.addFrame("npc/experiencedfarmer_5.png");
         return animation;
     }
 }

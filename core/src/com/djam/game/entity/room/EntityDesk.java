@@ -106,6 +106,9 @@ public class EntityDesk extends Entity {
             case Senior_Farmer:
                 this.placeItem(NpcItemType.SuperFlowers);
                 break;
+            case Experienced_Farmer_Farmer:
+                this.placeItem(NpcItemType.SeniorFlowers);
+                break;
         }
 
     }
@@ -119,6 +122,9 @@ public class EntityDesk extends Entity {
                 this.npcItem = new EntityBookshelf(itemType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
                 break;
             case SuperFlowers:
+                this.npcItem = new EntityPlant(itemType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
+                break;
+            case SeniorFlowers:
                 this.npcItem = new EntityPlant(itemType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
                 break;
         }

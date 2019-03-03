@@ -12,7 +12,8 @@ import com.djam.game.ui.text.Text;
 public enum NpcType {
     Farmer("Farmer", "npc/farmer_0.png", "ui/farmer_overlay.png", 20),
     Researcher("Researcher", "npc/researcher_0.png", "ui/researcher_overlay.png", 35),
-    Senior_Farmer("Senior Farmer", 5, "npc/senior_farmer_0.png", "ui/senior_farmer_overlay.png", "ui/senior_farmer_locked.png", 40);
+    Senior_Farmer("Experienced Farmer", 5, "npc/experiencedfarmer_0.png", "ui/experiencedfarmer_icon_overlay.png", "ui/experiencedfarmer_locked.png", 40),
+    Experienced_Farmer_Farmer("Senior Farmer", 10, "npc/senior_farmer_0.png", "ui/senior_farmer_overlay.png", "ui/senior_farmer_locked.png", 80);
 
     ;
 
@@ -76,6 +77,9 @@ public enum NpcType {
                 break;
             case Senior_Farmer:
                 npc = new EntitySeniorFarmer(room, map, position);
+                break;
+            case Experienced_Farmer_Farmer:
+                npc = new EntityExperiencedFarmer(room, map, position);
                 break;
         }
 
