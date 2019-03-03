@@ -7,14 +7,16 @@ import com.djam.game.assets.Assets;
 import com.djam.game.entity.EntityNpc;
 import com.djam.game.entity.room.EntityRoom;
 import com.djam.game.map.Map;
+import com.djam.game.ui.text.Text;
 
 public enum NpcType {
-    Farmer("npc/farmer_0.png", "ui/farmer_overlay.png", 20),
-    Researcher("npc/researcher_0.png", "ui/researcher_overlay.png", 35)
+    Farmer("Farmer", "npc/farmer_0.png", "ui/farmer_overlay.png", 20),
+    Researcher("Researcher", "npc/researcher_0.png", "ui/researcher_overlay.png", 35),
+    Senior_Farmer("Senior Farmer", 5, "npc/senior_farmer_0.png", "ui/senior_farmer_overlay.png", "ui/senior_farmer_locked.png", 40);
 
     ;
 
-    NpcType(String path, String overlayPath, int cost) {
+    NpcType(String name, String path, String overlayPath, int cost) {
         this.TEXTURE = Assets.getInstance().getTexture(path);
 
         this.SPRITE = new Sprite(this.TEXTURE);
@@ -24,6 +26,29 @@ public enum NpcType {
         this.OVERLAY_SPRITE = new Sprite(this.OVERLAY_TEXTURE);
 
         this.COST = cost;
+
+        this.LOCKED = false;
+
+        this.NAME = name;
+    }
+
+    NpcType(String name, int unlockCost, String path, String overlayPath, String lockedPath, int cost) {
+        this.TEXTURE = Assets.getInstance().getTexture(path);
+
+        this.SPRITE = new Sprite(this.TEXTURE);
+        this.SPRITE.setAlpha(0.3f);
+
+        this.OVERLAY_TEXTURE = Assets.getInstance().getTexture(overlayPath);
+        this.OVERLAY_SPRITE = new Sprite(this.OVERLAY_TEXTURE);
+
+        this.COST = cost;
+
+        this.LOCKED = true;
+        this.UNLOCK_COST = unlockCost;
+
+        this.NAME = name;
+
+        this.LOCKED_SPRITE = Assets.getInstance().getTexture(lockedPath);
     }
 
     public final Sprite SPRITE;
@@ -32,6 +57,12 @@ public enum NpcType {
     public final Texture TEXTURE;
 
     public final int COST;
+
+    public final boolean LOCKED;
+    public int UNLOCK_COST;
+    public Texture LOCKED_SPRITE;
+
+    public final String NAME;
 
     public EntityNpc generateNpc(EntityRoom room, Map map, Vector2 position) {
         EntityNpc npc = null;
@@ -42,6 +73,9 @@ public enum NpcType {
                 break;
             case Researcher:
                 npc = new EntityResearcher(room, map, position);
+                break;
+            case Senior_Farmer:
+                npc = new EntitySeniorFarmer(room, map, position);
                 break;
         }
 

@@ -136,6 +136,30 @@ public class Assets {
         this.loadTexture("bookshelf/bookshelf_2.png");
         this.loadTexture("bookshelf/bookshelf_3.png");
 
+        this.loadTexture("npc/senior_farmer_0.png");
+        this.loadTexture("npc/senior_farmer_1.png");
+        this.loadTexture("npc/senior_farmer_2.png");
+        this.loadTexture("npc/senior_farmer_3.png");
+        this.loadTexture("npc/senior_farmer_4.png");
+        this.loadTexture("npc/senior_farmer_5.png");
+
+        this.loadTexture("npc/senior_researcher_0.png");
+        this.loadTexture("npc/senior_researcher_1.png");
+        this.loadTexture("npc/senior_researcher_2.png");
+        this.loadTexture("npc/senior_researcher_3.png");
+        this.loadTexture("npc/senior_researcher_4.png");
+        this.loadTexture("npc/senior_researcher_5.png");
+
+        this.loadTexture("npc/head_farmer_0.png");
+        this.loadTexture("npc/head_farmer_1.png");
+        this.loadTexture("npc/head_farmer_2.png");
+        this.loadTexture("npc/head_farmer_3.png");
+        this.loadTexture("npc/head_farmer_4.png");
+        this.loadTexture("npc/head_farmer_5.png");
+
+        this.loadTexture("ui/senior_farmer_overlay.png");
+        this.loadTexture("ui/senior_farmer_locked.png");
+
         this.assetManager.finishLoading();
     }
 

@@ -23,7 +23,7 @@ public class StateMap extends State {
     public void create() {
         this.map = new Map();
 
-        this.uiHud = new UiHud(this.map.getBusiness(), this.map.getCurrency());
+        this.uiHud = new UiHud(this.map.getBusiness(), this.map.getCurrency(), this.map.getResearch());
     }
 
     @Override

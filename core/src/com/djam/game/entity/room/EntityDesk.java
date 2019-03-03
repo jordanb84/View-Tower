@@ -96,13 +96,18 @@ public class EntityDesk extends Entity {
 
         this.npc = placedNpc;
 
-        if(npcType == NpcType.Farmer) {
-            this.placeItem(NpcItemType.Flowers);
+        switch(npcType) {
+            case Farmer:
+                this.placeItem(NpcItemType.Flowers);
+                break;
+            case Researcher:
+                this.placeItem(NpcItemType.Bookshelf);
+                break;
+            case Senior_Farmer:
+                this.placeItem(NpcItemType.SuperFlowers);
+                break;
         }
 
-        if(npcType == NpcType.Researcher) {
-            this.placeItem(NpcItemType.Bookshelf);
-        }
     }
 
     private void placeItem(NpcItemType itemType) {
@@ -112,6 +117,9 @@ public class EntityDesk extends Entity {
                 break;
             case Bookshelf:
                 this.npcItem = new EntityBookshelf(itemType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
+                break;
+            case SuperFlowers:
+                this.npcItem = new EntityPlant(itemType, this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y));
                 break;
         }
 
