@@ -203,22 +203,33 @@ class LockedShopButton extends ShopButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(research.getBalance() >= unlockCost) {
-                    purchase(event, x, y);
-                    if(!purchased) {
-                        resetTextures();
-                        research.modifyBalance(-unlockCost);
-                        purchased = true;
+                if(unlockAllowed()) {
+                    if (research.getBalance() >= unlockCost) {
+                        purchase(event, x, y);
+                        if (!purchased) {
+                            resetTextures();
+                            research.modifyBalance(-unlockCost);
+                            purchased = true;
+                            unlock();
+                        }
                     }
-                }
 
-                if(purchased) {
-                    resetTextures();
-                }
+                    if (purchased) {
+                        resetTextures();
+                    }
 
-                System.out.println("Clicked");
+                    System.out.println("Clicked");
+                }
             }
         });
+    }
+
+    public boolean unlockAllowed() {
+        return true;
+    }
+
+    public void unlock() {
+
     }
 
     public void resetTextures() {
@@ -253,6 +264,11 @@ class LockedNpcShopButton extends LockedShopButton {
 
         this.business = business;
         this.currency = currency;
+
+        //        this.tooltip = new TextTooltip(productName + " - " + "\n(Locked - Unlock cost: " + this.unlockCost + " research points)", SkinType.Arcade.SKIN);
+        if(npcType.REQUIREMENT != null) {
+            this.getTooltip().getActor().setText(productName + " - " + "\n(Locked - Unlock cost: " + unlockCost + " research points)\n(Requires " + npcType.REQUIREMENT + " to be unlocked)");
+        }
     }
 
     @Override
@@ -265,6 +281,26 @@ class LockedNpcShopButton extends LockedShopButton {
 
         //        super(npcType.name() + " Employee\n(Place at a room table to build)\n", npcType.COST, skin, upTexture, downTexture, hoverTexture);
         this.getTooltip().getActor().setText(npcType.NAME + " Employee\n(Place at a room table to build)\n- Cost: " + this.npcType.COST);
+    }
+
+    @Override
+    public void unlock() {
+        super.unlock();
+        this.business.getUnlocks().add(this.npcType.UNLOCK_TYPE);
+        System.out.println("Unlocked " + this.npcType.UNLOCK_TYPE.name());
+    }
+
+    @Override
+    public boolean unlockAllowed() {
+        if(this.npcType.REQUIRED_TYPE != null) {
+            if(this.business.hasUnlock(this.npcType.REQUIRED_TYPE)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
 

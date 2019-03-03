@@ -13,6 +13,7 @@ import com.djam.game.entity.impl.DecorType;
 import com.djam.game.entity.impl.EntityDecor;
 import com.djam.game.entity.impl.NpcType;
 import com.djam.game.map.Map;
+import com.djam.game.ui.impl.UnlockTypes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,8 @@ public class Business {
     private boolean release;
 
     private int gridWidth;
+
+    private List<UnlockTypes> unlocks = new ArrayList<UnlockTypes>();
 
     public Business(Map map) {
         this.map = map;
@@ -354,6 +357,20 @@ public class Business {
 
     public Map getMap() {
         return map;
+    }
+
+    public List<UnlockTypes> getUnlocks() {
+        return unlocks;
+    }
+
+    public boolean hasUnlock(UnlockTypes unlock) {
+        for(UnlockTypes unlockTypes : this.getUnlocks()) {
+            if(unlockTypes == unlock) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

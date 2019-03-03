@@ -7,13 +7,14 @@ import com.djam.game.assets.Assets;
 import com.djam.game.entity.EntityNpc;
 import com.djam.game.entity.room.EntityRoom;
 import com.djam.game.map.Map;
+import com.djam.game.ui.impl.UnlockTypes;
 import com.djam.game.ui.text.Text;
 
 public enum NpcType {
     Farmer("Farmer", "npc/farmer_0.png", "ui/farmer_overlay.png", 20),
     Researcher("Researcher", "npc/researcher_0.png", "ui/researcher_overlay.png", 35),
-    Senior_Farmer("Experienced Farmer", 5, "npc/experiencedfarmer_0.png", "ui/experiencedfarmer_icon_overlay.png", "ui/experiencedfarmer_locked.png", 40),
-    Experienced_Farmer_Farmer("Senior Farmer", 10, "npc/senior_farmer_0.png", "ui/senior_farmer_overlay.png", "ui/senior_farmer_locked.png", 80);
+    Senior_Farmer(null, null, UnlockTypes.EXPERIENCED_FARMER, "Experienced Farmer", 5, "npc/experiencedfarmer_0.png", "ui/experiencedfarmer_icon_overlay.png", "ui/experiencedfarmer_locked.png", 40),
+    Experienced_Farmer_Farmer("Experienced Farmer", UnlockTypes.EXPERIENCED_FARMER, UnlockTypes.SENIOR_FARMER, "Senior Farmer", 10, "npc/senior_farmer_0.png", "ui/senior_farmer_overlay.png", "ui/senior_farmer_locked.png", 80);
 
     ;
 
@@ -33,7 +34,7 @@ public enum NpcType {
         this.NAME = name;
     }
 
-    NpcType(String name, int unlockCost, String path, String overlayPath, String lockedPath, int cost) {
+    NpcType(String requirement, UnlockTypes requiredType, UnlockTypes unlockType, String name, int unlockCost, String path, String overlayPath, String lockedPath, int cost) {
         this.TEXTURE = Assets.getInstance().getTexture(path);
 
         this.SPRITE = new Sprite(this.TEXTURE);
@@ -50,6 +51,12 @@ public enum NpcType {
         this.NAME = name;
 
         this.LOCKED_SPRITE = Assets.getInstance().getTexture(lockedPath);
+
+        this.UNLOCK_TYPE = unlockType;
+
+        this.REQUIREMENT = requirement;
+
+        this.REQUIRED_TYPE = requiredType;
     }
 
     public final Sprite SPRITE;
@@ -64,6 +71,13 @@ public enum NpcType {
     public Texture LOCKED_SPRITE;
 
     public final String NAME;
+
+    //The type which is unlocked when this NPC is purchased/unlocked
+    public UnlockTypes UNLOCK_TYPE;
+
+    public String REQUIREMENT;
+
+    public UnlockTypes REQUIRED_TYPE;
 
     public EntityNpc generateNpc(EntityRoom room, Map map, Vector2 position) {
         EntityNpc npc = null;
