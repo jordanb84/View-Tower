@@ -1,6 +1,7 @@
 package com.djam.game.ui.impl;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,6 +18,7 @@ import com.djam.game.economy.Research;
 import com.djam.game.entity.impl.DecorType;
 import com.djam.game.entity.impl.NpcType;
 import com.djam.game.entity.room.Business;
+import com.djam.game.state.StateManager;
 import com.djam.game.ui.SkinType;
 import com.djam.game.ui.Ui;
 
@@ -32,8 +34,8 @@ public class UiHud extends Ui {
 
     private Research research;
 
-    public UiHud(Business business, Currency currency, Research research) {
-        super(SkinType.Holo_Dark_Hdpi.SKIN);
+    public UiHud(StateManager stateManager, Business business, Currency currency, Research research) {
+        super(stateManager, SkinType.Holo_Dark_Hdpi.SKIN);
         this.business = business;
         this.currency = currency;
         this.research = research;
@@ -59,6 +61,11 @@ public class UiHud extends Ui {
 
     }
 
+    @Override
+    public void update(OrthographicCamera camera) {
+        super.update(camera);
+        Gdx.input.setInputProcessor(this.getStage());
+    }
 }
 
 class NpcShop extends HorizontalGroup {

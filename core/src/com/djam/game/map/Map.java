@@ -59,7 +59,7 @@ public class Map {
 
         this.happiness = new Happiness(this);
 
-        this.background = new Background(this);
+        this.background = new Background();
 
         //EntityPlayer player = new EntityPlayer(this, new Vector2(377, 30));
         EntityPlayer player = new EntityPlayer(this, new Vector2(377, 20));

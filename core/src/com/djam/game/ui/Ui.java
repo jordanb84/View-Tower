@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.djam.game.state.StateManager;
 
 public abstract class Ui {
 
@@ -15,13 +16,17 @@ public abstract class Ui {
 
     private Skin skin;
 
-    public Ui(Skin skin) {
+    private StateManager stateManager;
+
+    public Ui(StateManager stateManager, Skin skin) {
         this.stage = new Stage();
 
         this.rootTable = new Table();
         this.rootTable.setFillParent(true);
 
         this.skin = skin;
+
+        this.stateManager = stateManager;
 
         this.create();
 
@@ -56,6 +61,10 @@ public abstract class Ui {
 
     public Skin getSkin() {
         return skin;
+    }
+
+    public StateManager getStateManager() {
+        return stateManager;
     }
 
 }

@@ -17,13 +17,13 @@ public class Background {
 
     private List<BackgroundLayer> layers = new ArrayList<BackgroundLayer>();
 
-    private Map map;
-
     private int width;
 
     private OrthographicCamera camera;
 
-    public Background(Map map) {
+    private Vector2 offset = new Vector2();
+
+    public Background() {
         /**this.addLayer(1, "background/1.png");
         this.addLayer(0.9f, "background/2.png");
         this.addLayer(0.8f, "background/3.png");
@@ -46,8 +46,6 @@ public class Background {
         this.addLayer(0.8f, "background/3.png");
         this.addLayer(0.9f, "background/2.png");
         this.addLayer(1, "background/1.png");
-
-        this.map = map;
 
         this.width = 960;
 
@@ -76,6 +74,7 @@ public class Background {
         Vector2 cameraPosition = new Vector2(camera.position.x, camera.position.y);
         //System.out.println(cameraPosition.x + "/" + cameraPosition.y); //<102 >999
 
+        //System.out.println(cameraPosition.x);
         if(cameraPosition.x < 102) {
             cameraPosition.x = 102;
         }
@@ -109,6 +108,10 @@ public class Background {
         //this.layers.get(1).draw(batch);
 
         batch.setProjectionMatrix(camera.combined);
+    }
+
+    public Vector2 getOffset() {
+        return offset;
     }
 
 }

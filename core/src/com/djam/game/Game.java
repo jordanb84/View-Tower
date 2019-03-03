@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.djam.game.state.StateManager;
 import com.djam.game.state.impl.StateMap;
+import com.djam.game.state.impl.StateMenu;
 
 public class Game extends ApplicationAdapter {
 
@@ -27,7 +28,8 @@ public class Game extends ApplicationAdapter {
 		this.stateManager = new StateManager();
 
 		this.stateManager.registerState("map", new StateMap(this.stateManager));
-		this.stateManager.setActiveState("map");
+		this.stateManager.registerState("menu", new StateMenu(this.stateManager));
+		this.stateManager.setActiveState("menu");
 	}
 
 	@Override
