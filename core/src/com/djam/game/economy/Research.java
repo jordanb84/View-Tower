@@ -19,7 +19,7 @@ public class Research {
     private OrthographicCamera camera;
 
     public Research() {
-        this.balance = 100;
+        this.balance = 10000;
 
         this.icon = new Sprite(Assets.getInstance().getTexture("ui/research.png"));
         this.icon.scale(3f);

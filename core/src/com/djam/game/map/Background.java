@@ -74,7 +74,7 @@ public class Background {
         //batch.setProjectionMatrix(this.map.getTextCamera().combined);
         batch.setProjectionMatrix(this.camera.combined);
         Vector2 cameraPosition = new Vector2(camera.position.x, camera.position.y);
-        //System.out.println(cameraPosition.x + "/" + cameraPosition.y); //<102 >999
+        System.out.println(cameraPosition.x + "/" + cameraPosition.y); //<102 >999
 
         if(cameraPosition.x < 102) {
             cameraPosition.x = 102;
@@ -86,6 +86,10 @@ public class Background {
 
         if(cameraPosition.y < 5) {
             //cameraPosition.y = 5;
+        }
+
+        if(cameraPosition.y > 210) {
+            cameraPosition.y = 210;
         }
 
         for(BackgroundLayer layer : this.layers) {
