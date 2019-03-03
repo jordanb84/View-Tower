@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.djam.game.map.Background;
 import com.djam.game.state.StateManager;
@@ -43,9 +44,22 @@ public class UiMenu extends Ui {
         this.background = new Background();
 
         ButtonPlay play = new ButtonPlay(this.getSkin(), this.getStateManager());
-        play.setPosition(Gdx.graphics.getWidth() / 2 - play.getWidth() / 2, Gdx.graphics.getHeight() / 2 - play.getHeight() / 2);
+        play.setPosition(Gdx.graphics.getWidth() / 2 - play.getWidth() / 2, Gdx.graphics.getHeight() / 2 - play.getHeight() / 2 + play.getHeight());
+
+
+        ButtonExit exit = new ButtonExit(this.getSkin(), this.getStateManager());
+        exit.setPosition(Gdx.graphics.getWidth() / 2 - play.getWidth() / 2, Gdx.graphics.getHeight() / 2 - exit.getHeight() / 2 - exit.getHeight() + exit.getHeight());
+
+        exit.setSize(play.getWidth(), play.getHeight());
+
+        ButtonCredits credits = new ButtonCredits(this.getSkin(), this.getStateManager());
+        credits.setPosition(Gdx.graphics.getWidth() / 2 - play.getWidth() / 2, Gdx.graphics.getHeight() / 2 - exit.getHeight() / 2 - exit.getHeight());
+
+        credits.setSize(play.getWidth(), play.getHeight());
 
         this.getRootTable().center().addActor(play);
+        this.getRootTable().center().addActor(exit);
+        this.getRootTable().center().addActor(credits);
 
         this.getRootTable().setFillParent(true);
 
@@ -129,7 +143,7 @@ class MouseListener extends InputListener {
 class ButtonPlay extends TextButton {
 
     public ButtonPlay(Skin skin, StateManager stateManager) {
-        super("Play", skin);
+        super("Play Game", skin);
         this.addListener(new PlayClicked(stateManager));
     }
 
@@ -151,4 +165,42 @@ class ButtonPlay extends TextButton {
             super.clicked(event, x, y);
         }
     }
+}
+
+class ButtonExit extends TextButton {
+
+    public ButtonExit(Skin skin, StateManager stateManager) {
+        super("Exit Game", skin);
+        this.addListener(new ExitClicked(stateManager));
+    }
+
+    public void play() {
+
+    }
+
+    class ExitClicked extends ClickListener {
+
+        private StateManager stateManager;
+
+        public ExitClicked(StateManager stateManager) {
+            this.stateManager = stateManager;
+        }
+
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            System.exit(0);
+            super.clicked(event, x, y);
+        }
+    }
+}
+
+class ButtonCredits extends TextButton {
+
+    public ButtonCredits(Skin skin, StateManager stateManager) {
+        super("Credits", skin);
+        TextTooltip tooltip = new TextTooltip("Programmed from scratch in 48 hours for Discord Jam 1.\n\nAssets from OpenGameArt users:\n\"OddPotatoGift\"\n\"CraftPix.net 2D Game Assets\"", SkinType.Arcade.SKIN);
+        tooltip.setInstant(true);
+        this.addListener(tooltip);
+    }
+
 }
