@@ -20,7 +20,7 @@ public abstract class EntityNpc extends Entity {
 
     private float elapsedSinceHappinessChange;
 
-    private float happinessChangeInterval = 3;
+    private float happinessChangeInterval = 4;
 
     public EntityNpc(EntityRoom room, Map map, Vector2 position) {
         super(map, position);
@@ -85,10 +85,10 @@ class EntityHeart extends Entity {
     public EntityHeart(Map map, Vector2 position, float value) {
         super(map, position);
         this.movingUp = true;
-        this.lifespan = new Random().nextInt(3);
+        this.lifespan = new Random().nextInt(2);
 
-        if(this.lifespan < 2) {
-            this.lifespan = 2;
+        if(this.lifespan < 1) {
+            this.lifespan = 1;
         }
 
         this.value = value;

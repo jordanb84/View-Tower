@@ -198,6 +198,12 @@ public class Assets {
 
         this.loadTexture("decor/firefly_overlay.png");
 
+        this.loadTexture("decor/tv_0.png");
+        this.loadTexture("decor/tv_1.png");
+
+        this.loadTexture("decor/tv_overlay.png");
+        this.loadTexture("decor/tv.png");
+
         this.assetManager.finishLoading();
     }
 

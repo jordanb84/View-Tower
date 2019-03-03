@@ -102,6 +102,13 @@ class NpcShop extends HorizontalGroup {
 
         this.addActor(fireflyShopButton);
 
+        Texture tvShopIcon = Assets.getInstance().getTexture("decor/tv.png");
+        Texture tvShopIconHover = Assets.getInstance().getTexture("decor/tv_overlay.png");
+
+        DecorShopButton tvShopButton = new DecorShopButton(DecorType.Tv, business, currency, skin, tvShopIcon, tvShopIcon, tvShopIconHover);
+
+        this.addActor(tvShopButton);
+
         PurchaseFloorShopButton purchaseFloorShopButton = new PurchaseFloorShopButton(business, skin, 25);
 
         this.addActor(purchaseFloorShopButton);
@@ -123,14 +130,14 @@ class HoverListener extends InputListener {
     @Override
     public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
         super.enter(event, x, y, pointer, fromActor);
-        System.out.println("Enter");
+        //System.out.println("Enter");
         this.business.setHover(true);
     }
 
     @Override
     public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
         super.exit(event, x, y, pointer, toActor);
-        System.out.println("Exit");
+        //System.out.println("Exit");
         this.business.setHover(false);
     }
 

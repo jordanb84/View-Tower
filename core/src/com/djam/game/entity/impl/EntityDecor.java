@@ -14,7 +14,7 @@ public class EntityDecor extends Entity {
 
     public EntityDecor(DecorType decorType, Map map, Vector2 position) {
         super(map, position);
-        Animation animation = new Animation(0.1f);
+        Animation animation = new Animation(decorType.INTERVAL);
 
         Random spriteRandom = new Random();
 
@@ -47,6 +47,7 @@ public class EntityDecor extends Entity {
     }
 
     public DecorType getDecorType() {
+
         return decorType;
     }
 
