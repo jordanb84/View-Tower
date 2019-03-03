@@ -312,7 +312,9 @@ class LockedNpcShopButton extends LockedShopButton {
 
         //        this.tooltip = new TextTooltip(productName + " - " + "\n(Locked - Unlock cost: " + this.unlockCost + " research points)", SkinType.Arcade.SKIN);
         if(npcType.REQUIREMENT != null) {
-            this.getTooltip().getActor().setText(productName + " - " + "\n(Locked - Unlock cost: " + unlockCost + " research points)\n(Requires " + npcType.REQUIREMENT + " to be unlocked)");
+            this.getTooltip().getActor().setText(productName + " (Generates more and faster) " + "\n(Locked - Unlock cost: " + unlockCost + " research points)\n(Requires " + npcType.REQUIREMENT + " to be unlocked)");
+        } else {
+            this.getTooltip().getActor().setText(productName + " (Generates more) " + "\n(Locked - Unlock cost: " + unlockCost + " research points)");
         }
     }
 

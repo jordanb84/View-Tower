@@ -37,7 +37,7 @@ public class EntityDecor extends Entity {
         this.decorType = decorType;
 
         if(this.decorType.LIGHT_COLOR != null) {
-            new PointLight(map.getRayHandler(), 100, this.decorType.LIGHT_COLOR, 30, this.getPosition().x + this.getWidth() / 2, this.getPosition().y + this.getHeight() / 2);
+            new PointLight(map.getRayHandler(), 100, this.decorType.LIGHT_COLOR, decorType.LIGHT_DISTANCE, this.getPosition().x + this.getWidth() / 2, this.getPosition().y + this.getHeight() / 2);
         }
     }
 

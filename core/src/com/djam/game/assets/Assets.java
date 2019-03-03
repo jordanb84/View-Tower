@@ -204,6 +204,30 @@ public class Assets {
         this.loadTexture("decor/tv_overlay.png");
         this.loadTexture("decor/tv.png");
 
+        this.loadTexture("plant/flower1_0.png");
+        this.loadTexture("plant/flower1_1.png");
+        this.loadTexture("plant/flower1_2.png");
+        this.loadTexture("plant/flower1_3.png");
+        this.loadTexture("plant/flower1_4.png");
+        this.loadTexture("plant/flower1_5.png");
+
+        this.loadTexture("plant/flower2_0.png");
+        this.loadTexture("plant/flower2_1.png");
+        this.loadTexture("plant/flower2_2.png");
+        this.loadTexture("plant/flower2_3.png");
+        this.loadTexture("plant/flower2_4.png");
+        this.loadTexture("plant/flower2_5.png");
+
+        this.loadTexture("plant/pot_0.png");
+        this.loadTexture("plant/pot_1.png");
+        this.loadTexture("plant/pot_2.png");
+        this.loadTexture("plant/pot_3.png");
+
+        this.loadTexture("plant/pot1_0.png");
+        this.loadTexture("plant/pot1_1.png");
+        this.loadTexture("plant/pot1_2.png");
+        this.loadTexture("plant/pot1_3.png");
+
         this.assetManager.finishLoading();
     }
 
