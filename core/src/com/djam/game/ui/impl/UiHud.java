@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.djam.game.assets.Assets;
 import com.djam.game.economy.Currency;
+import com.djam.game.entity.impl.DecorType;
 import com.djam.game.entity.impl.NpcType;
 import com.djam.game.entity.room.Business;
 import com.djam.game.ui.SkinType;
@@ -70,6 +71,12 @@ class NpcShop extends HorizontalGroup {
 
             this.addActor(roomShopButton);
 
+            Texture paintingShopIcon = Assets.getInstance().getTexture("ui/painting_icon.png");
+            Texture paintingShopIconHover = Assets.getInstance().getTexture("ui/painting_icon_hover.png");
+
+            DecorShopButton paintingShopButton = new DecorShopButton(DecorType.Painting, business, currency, skin, paintingShopIcon, paintingShopIcon, paintingShopIconHover);
+
+            this.addActor(paintingShopButton);
         }
     }
 
@@ -119,7 +126,9 @@ class NpcShopButton extends ShopButton {
     @Override
     public void purchase(InputEvent event, float x, float y) {
         super.purchase(event, x, y);
-        this.business.stopPlacingRoom();
+        this.business.stopPlacing();
+        /**this.business.stopPlacingRoom();
+        this.business.startPlacingNpc(this.npcType);**/
         this.business.startPlacingNpc(this.npcType);
     }
 
@@ -140,8 +149,35 @@ class RoomShopButton extends ShopButton {
     public void purchase(InputEvent event, float x, float y) {
         super.purchase(event, x, y);
         //this.business.startPlacingNpc(this.npcType);
-        this.business.stopPlacingNpc();
+        this.business.stopPlacing();
+        /**this.business.stopPlacingNpc();
+        this.business.startPlacingRoom();**/
         this.business.startPlacingRoom();
+    }
+
+}
+
+class DecorShopButton extends ShopButton {
+
+    private Business business;
+    private Currency currency;
+
+    private DecorType decorType;
+
+    public DecorShopButton(DecorType decorType, Business business, Currency currency, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
+        super(decorType.NAME + "\n(" + decorType.DESCRIPTION + ")\n", decorType.PRICE, skin, upTexture, downTexture, hoverTexture);
+        this.business = business;
+        this.currency = currency;
+        this.decorType = decorType;
+    }
+
+    @Override
+    public void purchase(InputEvent event, float x, float y) {
+        super.purchase(event, x, y);
+        //this.business.startPlacingNpc(this.npcType);
+        this.business.stopPlacing();
+
+        this.business.startPlacingDecor(this.decorType);
     }
 
 }

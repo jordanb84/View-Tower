@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.djam.game.animation.Animation;
 import com.djam.game.assets.Assets;
 import com.djam.game.entity.Entity;
+import com.djam.game.entity.impl.EntityDecor;
 import com.djam.game.entity.impl.EntityLadder;
 import com.djam.game.map.Map;
 
@@ -25,6 +26,10 @@ public class EntityRoom extends Entity {
     private Sprite deskSprite;
 
     private EntityLadder ladder;
+
+    private List<EntityDecor> decor = new ArrayList<EntityDecor>();
+
+    private EntityDecor placingDecor;
 
     public EntityRoom(Map map, Vector2 position) {
         super(map, position);
@@ -54,6 +59,10 @@ public class EntityRoom extends Entity {
         super.render(batch, camera);
         this.collisionSprite.draw(batch);
 
+        for(EntityDecor decor : this.getDecor()) {
+            decor.render(batch, camera);
+        }
+
         for(EntityDesk desk : this.desks) {
             desk.render(batch, camera);
         }
@@ -64,6 +73,10 @@ public class EntityRoom extends Entity {
         super.update(camera);
         for(EntityDesk desk : this.desks) {
             desk.update(camera);
+        }
+
+        for(EntityDecor decor : this.getDecor()) {
+            decor.update(camera);
         }
     }
 
@@ -89,6 +102,30 @@ public class EntityRoom extends Entity {
         this.ladder = new EntityLadder(this.getMap(), new Vector2(this.getPosition().x + 180, this.getPosition().y));
 
         this.getMap().spawn(ladder);
+    }
+
+    public List<EntityDecor> getDecor() {
+        return decor;
+    }
+
+    public boolean hasDecor() {
+        return this.getDecor().size() > 0;
+    }
+
+    public boolean bodyOverlapsDecor(Rectangle rectangle) {
+        for(EntityDecor decor : this.getDecor()) {
+            decor.updateBody();
+
+            if(rectangle.overlaps(decor.getBody())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean placingDecor() {
+        return this.placingDecor != null;
     }
 
 }

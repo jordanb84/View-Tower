@@ -3,6 +3,7 @@ package com.djam.game.entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
+import com.djam.game.entity.impl.EntityDecor;
 import com.djam.game.entity.room.EntityRoom;
 import com.djam.game.map.Map;
 
@@ -39,6 +40,18 @@ public abstract class EntityNpc extends Entity {
 
     public void happinessChange() {
         this.happiness -= 0.3f;
+
+        for(EntityDecor decor : this.getRoom().getDecor()) {
+            this.happiness += decor.getDecorType().HAPPINESS_BONUS;
+        }
+
+        if(this.happiness > 100) {
+            this.happiness = 100;
+        }
+
+        if(this.happiness < 40) {
+            this.happiness = 40;
+        }
     }
 
     public float getHappiness() {

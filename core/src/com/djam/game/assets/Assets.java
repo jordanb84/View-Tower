@@ -107,6 +107,18 @@ public class Assets {
         this.loadTexture("background/6.png");
         this.loadTexture("background/7.png");
 
+        this.loadTexture("ui/painting_icon.png");
+        this.loadTexture("ui/painting_icon_hover.png");
+
+        this.loadTexture("decor/painting_0.png");
+        this.loadTexture("decor/painting_1.png");
+        this.loadTexture("decor/painting_2.png");
+        this.loadTexture("decor/painting_3.png");
+        this.loadTexture("decor/painting_4.png");
+        this.loadTexture("decor/painting_5.png");
+        this.loadTexture("decor/painting_6.png");
+        this.loadTexture("decor/painting_7.png");
+
         this.assetManager.finishLoading();
     }
 
