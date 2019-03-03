@@ -166,4 +166,8 @@ public class Map {
         return textCamera;
     }
 
+    public Research getResearch() {
+        return research;
+    }
+
 }

@@ -61,23 +61,23 @@ class NpcShop extends HorizontalGroup {
             ShopButton npcButton = new NpcShopButton(npc, business, currency, skin, npc.TEXTURE, npc.TEXTURE, npc.OVERLAY_TEXTURE);
 
             this.addActor(npcButton);
-
-            Texture roomShopIcon = Assets.getInstance().getTexture("ui/room_icon.png");
-            Texture roomShopIconHover = Assets.getInstance().getTexture("ui/room_icon_hover.png");
-
-            RoomShopButton roomShopButton = new RoomShopButton(business, currency, skin, roomShopIcon, roomShopIcon, roomShopIconHover);
-
-            //roomShopButton.setPosition(roomShopButton.getX() + 100, roomShopButton.getY() - 5);
-
-            this.addActor(roomShopButton);
-
-            Texture paintingShopIcon = Assets.getInstance().getTexture("ui/painting_icon.png");
-            Texture paintingShopIconHover = Assets.getInstance().getTexture("ui/painting_icon_hover.png");
-
-            DecorShopButton paintingShopButton = new DecorShopButton(DecorType.Painting, business, currency, skin, paintingShopIcon, paintingShopIcon, paintingShopIconHover);
-
-            this.addActor(paintingShopButton);
         }
+
+        Texture roomShopIcon = Assets.getInstance().getTexture("ui/room_icon.png");
+        Texture roomShopIconHover = Assets.getInstance().getTexture("ui/room_icon_hover.png");
+
+        RoomShopButton roomShopButton = new RoomShopButton(business, currency, skin, roomShopIcon, roomShopIcon, roomShopIconHover);
+
+        //roomShopButton.setPosition(roomShopButton.getX() + 100, roomShopButton.getY() - 5);
+
+        this.addActor(roomShopButton);
+
+        Texture paintingShopIcon = Assets.getInstance().getTexture("ui/painting_icon.png");
+        Texture paintingShopIconHover = Assets.getInstance().getTexture("ui/painting_icon_hover.png");
+
+        DecorShopButton paintingShopButton = new DecorShopButton(DecorType.Painting, business, currency, skin, paintingShopIcon, paintingShopIcon, paintingShopIconHover);
+
+        this.addActor(paintingShopButton);
     }
 
 }

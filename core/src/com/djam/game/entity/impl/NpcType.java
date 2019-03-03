@@ -9,7 +9,8 @@ import com.djam.game.entity.room.EntityRoom;
 import com.djam.game.map.Map;
 
 public enum NpcType {
-    Farmer("npc/farmer_0.png", "ui/farmer_overlay.png", 20);
+    Farmer("npc/farmer_0.png", "ui/farmer_overlay.png", 20),
+    Researcher("npc/researcher_0.png", "ui/researcher_overlay.png", 35)
 
     ;
 
@@ -38,6 +39,9 @@ public enum NpcType {
         switch(this) {
             case Farmer:
                 npc = new EntityFarmer(room, map, position);
+                break;
+            case Researcher:
+                npc = new EntityResearcher(room, map, position);
                 break;
         }
 

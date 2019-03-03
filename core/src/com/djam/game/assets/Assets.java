@@ -122,6 +122,20 @@ public class Assets {
         this.loadTexture("ui/research.png");
         this.loadTexture("ui/research_large.png");
 
+        this.loadTexture("npc/researcher_0.png");
+        this.loadTexture("npc/researcher_1.png");
+        this.loadTexture("npc/researcher_2.png");
+        this.loadTexture("npc/researcher_3.png");
+        this.loadTexture("npc/researcher_4.png");
+        this.loadTexture("npc/researcher_5.png");
+
+        this.loadTexture("ui/researcher_overlay.png");
+
+        this.loadTexture("bookshelf/bookshelf_0.png");
+        this.loadTexture("bookshelf/bookshelf_1.png");
+        this.loadTexture("bookshelf/bookshelf_2.png");
+        this.loadTexture("bookshelf/bookshelf_3.png");
+
         this.assetManager.finishLoading();
     }
 

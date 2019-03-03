@@ -12,13 +12,13 @@ import com.djam.game.ui.text.TextType;
 
 import java.util.Random;
 
-public class EntityPlant extends EntityNpcItem {
+public class EntityBookshelf extends EntityNpcItem {
 
-    private NpcItemType plantType;
+    private NpcItemType itemType;
 
-    public EntityPlant(NpcItemType plantType, Map map, Vector2 position) {
+    public EntityBookshelf(NpcItemType itemType, Map map, Vector2 position) {
         super(map, position);
-        this.plantType = plantType;
+        this.itemType = itemType;
 
         float interval = new Random().nextInt(4);
 
@@ -28,7 +28,7 @@ public class EntityPlant extends EntityNpcItem {
 
         Animation animation = new Animation(interval);
 
-        for(String spritePath : this.plantType.STAGE_SPRITE_PATHS) {
+        for(String spritePath : this.itemType.STAGE_SPRITE_PATHS) {
             animation.addFrame(spritePath);
         }
 
@@ -45,14 +45,14 @@ public class EntityPlant extends EntityNpcItem {
         super.update(camera);
         if(this.getAnimation().isComplete()) {
             this.getAnimation().setComplete(false);
-            this.getMap().spawn(new EntityCoin(this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y), this.plantType.PROFIT));
-            this.getMap().getCurrency().modifyBalance(this.plantType.PROFIT);
+            this.getMap().spawn(new EntityResearch(this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y), this.itemType.PROFIT));
+            this.getMap().getResearch().modifyBalance(this.itemType.PROFIT);
         }
     }
 
 }
 
-class EntityCoin extends Entity {
+class EntityResearch extends Entity {
 
     private boolean movingUp;
 
@@ -64,7 +64,7 @@ class EntityCoin extends Entity {
 
     private int value;
 
-    public EntityCoin(Map map, Vector2 position, int value) {
+    public EntityResearch(Map map, Vector2 position, int value) {
         super(map, position);
         this.movingUp = true;
         this.lifespan = new Random().nextInt(3);
@@ -81,7 +81,7 @@ class EntityCoin extends Entity {
     public Animation setupAnimation() {
         Animation animation = new Animation(1);
 
-        animation.addFrame("ui/coin_large.png");
+        animation.addFrame("ui/research_large.png");
 
         return animation;
     }
