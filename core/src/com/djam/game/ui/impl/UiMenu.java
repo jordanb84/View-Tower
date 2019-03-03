@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
@@ -64,6 +65,11 @@ public class UiMenu extends Ui {
         this.getRootTable().center().addActor(play);
         this.getRootTable().center().addActor(exit);
         this.getRootTable().center().addActor(credits);
+
+        Label title = new Label("View Tower", this.getSkin());
+        title.setPosition(Gdx.graphics.getWidth() / 2 - title.getWidth() / 2, Gdx.graphics.getHeight() - title.getHeight() * 3);
+
+        this.getRootTable().addActor(title);
 
         this.getRootTable().setFillParent(true);
 

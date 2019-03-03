@@ -22,7 +22,7 @@ public class Currency {
     private OrthographicCamera camera;
 
     public Currency() {
-        this.balance = 350;
+        this.balance = 400;
 
         this.icon = new Sprite(Assets.getInstance().getTexture("ui/coin.png"));
         this.icon.scale(3f);

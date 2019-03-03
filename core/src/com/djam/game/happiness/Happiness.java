@@ -117,6 +117,8 @@ public class Happiness {
                     for (EntityDesk desk : room.getDesks()) {
                         if (desk.hasNpc()) {
                             happinessSum += desk.getNpc().getHappiness();
+
+                            System.out.println("Happiness " + happinessSum);
                             employees += 1;
                         }
                     }

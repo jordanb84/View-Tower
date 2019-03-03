@@ -44,7 +44,7 @@ public abstract class EntityNpc extends Entity {
     }
 
     public void happinessChange() {
-        float happinessChange = -1.6f;
+        float happinessChange = -1.2f;
 
         for(EntityDecor decor : this.getRoom().getDecor()) {
             happinessChange += decor.getDecorType().HAPPINESS_BONUS;
@@ -59,6 +59,10 @@ public abstract class EntityNpc extends Entity {
         }
 
         this.happiness += happinessChange;
+
+        if(happinessChange >= 0) {
+            this.happiness = 100;
+        }
 
         Vector2 position = new Vector2(this.getPosition().x - 16, this.getPosition().y + 8);
         this.getMap().spawn(new EntityHeart(this.getMap(), position, happinessChange));
@@ -140,7 +144,7 @@ class EntityHeart extends Entity {
         float floatData = Math.abs(this.value * 10);
         int data = (int) floatData;
 
-        if(value > 0) {
+        if(value >= 0) {
             TextType.Default_Medium.FONT.draw(batch, "<3", this.getPosition().x + 16, this.getPosition().y + 12);
         } else {
             TextType.Default_Medium.FONT.draw(batch, changeSymbol + data, this.getPosition().x + 16, this.getPosition().y + 12);
