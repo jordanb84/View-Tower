@@ -18,7 +18,7 @@ public enum  DecorType {
         this.SPRITES = new ArrayList<String>();
         this.SPRITES.add(spritePath);
 
-        this.HAPPINESS_BONUS = happinessBonus;
+        this.HAPPINESS_BONUS = happinessBonus * 4;
 
         this.NAME = name;
         this.DESCRIPTION = description + "\n(Better view helps employees make more money)";
@@ -39,7 +39,7 @@ public enum  DecorType {
             this.SPRITES.add(spritePath);
         }
 
-        this.HAPPINESS_BONUS = happinessBonus;
+        this.HAPPINESS_BONUS = happinessBonus * 1.5f;
 
         this.NAME = name;
         this.DESCRIPTION = description + "\n(Better view helps employees make more money)";

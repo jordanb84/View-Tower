@@ -9,7 +9,7 @@ public enum NpcItemType {
     ;
 
     NpcItemType(int profit, String ... stageSpritePaths) {
-        this.PROFIT = profit * 3;
+        this.PROFIT = profit * 2;
         this.STAGE_SPRITE_PATHS = stageSpritePaths;
     }
 

@@ -117,7 +117,7 @@ class NpcShop extends HorizontalGroup {
 
         this.addActor(tvShopButton);
 
-        PurchaseFloorShopButton purchaseFloorShopButton = new PurchaseFloorShopButton(business, skin, 25);
+        PurchaseFloorShopButton purchaseFloorShopButton = new PurchaseFloorShopButton(business, skin, 50);
 
         this.addActor(purchaseFloorShopButton);
 
