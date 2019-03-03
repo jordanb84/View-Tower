@@ -119,6 +119,9 @@ public class Assets {
         this.loadTexture("decor/painting_6.png");
         this.loadTexture("decor/painting_7.png");
 
+        this.loadTexture("ui/research.png");
+        this.loadTexture("ui/research_large.png");
+
         this.assetManager.finishLoading();
     }
 

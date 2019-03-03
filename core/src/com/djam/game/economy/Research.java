@@ -7,9 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.djam.game.assets.Assets;
 import com.djam.game.ui.text.TextType;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
-public class Currency {
+public class Research {
 
     private int balance;
 
@@ -19,10 +18,10 @@ public class Currency {
 
     private OrthographicCamera camera;
 
-    public Currency() {
-        this.balance = 350;
+    public Research() {
+        this.balance = 0;
 
-        this.icon = new Sprite(Assets.getInstance().getTexture("ui/coin.png"));
+        this.icon = new Sprite(Assets.getInstance().getTexture("ui/research.png"));
         this.icon.scale(3f);
 
         this.camera = new OrthographicCamera();
@@ -32,12 +31,12 @@ public class Currency {
     public void render(SpriteBatch batch, OrthographicCamera camera) {
         batch.setProjectionMatrix(this.camera.combined);
 
-        this.position.set(30, 65);
+        this.position.set(30, 25);
 
         this.icon.setPosition(position.x, position.y);
         this.icon.draw(batch);
 
-        TextType.Default.FONT.draw(batch, "" + this.balance + " coins", position.x + 25, position.y + 12);
+        TextType.Default.FONT.draw(batch, "" + this.balance + " research", position.x + 25, position.y + 12);
     }
 
     public void update(OrthographicCamera camera) {

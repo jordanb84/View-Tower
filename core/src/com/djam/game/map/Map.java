@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.djam.game.economy.Currency;
+import com.djam.game.economy.Research;
 import com.djam.game.entity.Direction;
 import com.djam.game.entity.Entity;
 import com.djam.game.entity.EntityLiving;
@@ -39,6 +40,8 @@ public class Map {
 
     private Background background;
 
+    private Research research;
+
     public Map() {
         this.business = new Business(this);
         this.currency = new Currency();
@@ -65,6 +68,8 @@ public class Map {
         System.out.println("Room: " + room);
 
         this.business.replaceRoom(room);
+
+        this.research = new Research();
     }
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
@@ -77,6 +82,7 @@ public class Map {
         }
 
         this.currency.render(batch, camera);
+        this.research.render(batch, camera);
 
         this.happiness.render(batch, camera);
     }
@@ -86,6 +92,7 @@ public class Map {
         this.applyGravity();
 
         this.currency.update(camera);
+        this.research.update(camera);
 
         this.getEntities().addAll(this.entitySpawnQueue);
         this.getEntities().removeAll(this.entityDespawnQueue);
