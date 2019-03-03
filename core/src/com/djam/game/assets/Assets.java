@@ -160,6 +160,8 @@ public class Assets {
         this.loadTexture("ui/senior_farmer_overlay.png");
         this.loadTexture("ui/senior_farmer_locked.png");
 
+        this.loadTexture("ui/heart_icon.png");
+
         this.assetManager.finishLoading();
     }
 

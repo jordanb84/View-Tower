@@ -60,7 +60,7 @@ class EntityCoin extends Entity {
 
     private float lifespan;
 
-    private float speed = 120;
+    private float speed = 70;
 
     private int value;
 
@@ -110,6 +110,6 @@ class EntityCoin extends Entity {
         //Vector2 textPosition = new Vector2(this.getPosition().x + camera.position.x + 220, this.getPosition().y + camera.position.y + 160);
 
        // batch.setProjectionMatrix(textCamera.combined);
-        TextType.Default_Small.FONT.draw(batch, "+" + this.value, this.getPosition().x + 12, this.getPosition().y + 12);
+        TextType.Default_Medium.FONT.draw(batch, "+" + this.value, this.getPosition().x + 16, this.getPosition().y + 12);
     }
 }

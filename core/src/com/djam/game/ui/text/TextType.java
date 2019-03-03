@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import java.util.logging.FileHandler;
 
 public enum  TextType {
-    Default("ui/font.ttf", 12), Default_Small("ui/font.ttf", 4)
+    Default("ui/font.ttf", 12), Default_Small("ui/font.ttf", 4), Default_Medium("ui/font.ttf", 6)
     ;
 
     TextType(String path, int size) {
