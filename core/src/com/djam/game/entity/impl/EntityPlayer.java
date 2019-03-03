@@ -25,6 +25,8 @@ public class EntityPlayer extends EntityLiving {
     public void update(OrthographicCamera camera) {
         this.getDirectionalAnimation().update(camera);
 
+        //System.out.println(this.getPosition().x);
+
         float speed = 50;
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
@@ -40,11 +42,26 @@ public class EntityPlayer extends EntityLiving {
             camera.update();
         }
 
+        boolean stopped = false;
+        if(this.getPosition().x > 767) {
+            this.getPosition().set(767, this.getPosition().y);
+            this.setDirectionalAnimation(this.idleAnimation);
+            stopped = true;
+        }
+
+        if(this.getPosition().x < 4) {
+            this.getPosition().set(4, this.getPosition().y);
+            this.setDirectionalAnimation(this.idleAnimation);
+            stopped = true;
+        }
+
         if(this.isMoving()) {
-            //System.out.println("MOVING");
-            this.setDirectionalAnimation(this.runAnimation);
-            camera.position.set(this.getPosition().x, this.getPosition().y, 0);
-            camera.update();
+            if(!stopped) {
+                //System.out.println("MOVING");
+                this.setDirectionalAnimation(this.runAnimation);
+                camera.position.set(this.getPosition().x, this.getPosition().y, 0);
+                camera.update();
+            }
         } else {
             this.setDirectionalAnimation(this.idleAnimation);
 
