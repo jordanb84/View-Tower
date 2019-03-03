@@ -3,6 +3,7 @@ package com.djam.game.entity.impl;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.djam.game.animation.Animation;
 import com.djam.game.animation.DirectionalAnimation;
@@ -54,16 +55,34 @@ public class EntityPlayer extends EntityLiving {
 
         for(EntityLadder ladder : this.getMap().getLadders()) {
             if(this.getBody().overlaps(ladder.getBody())) {
+                //Vector2 newPosition = new Vector2(this.getPosition().x, this.getPosition().y);
+
                 if(Gdx.input.isKeyJustPressed(Input.Keys.W)) {
-                    this.getPosition().add(0, 69);
+                    //newPosition.add(0, 69);
+                    this.jump(new Vector2(this.getPosition().x, this.getPosition().y + 69), ladder);
                 }
                 if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-                    this.getPosition().add(0, -67);
+                    //newPosition.add(0, -67);
+                    this.jump(new Vector2(this.getPosition().x, this.getPosition().y -67), ladder);
                 }
+
+
             }
         }
 
         this.updatePhysics();
+    }
+
+    public void jump(Vector2 newPosition, EntityLadder currentLadder) {
+        Rectangle newPositionBody = new Rectangle(newPosition.x, newPosition.y, this.getWidth(), this.getHeight());
+
+        for(EntityLadder ladder : this.getMap().getLadders()) {
+            if(ladder != currentLadder) {
+                if(newPositionBody.overlaps(ladder.getBody())) {
+                    this.getPosition().set(newPosition.x, newPosition.y);
+                }
+            }
+        }
     }
 
     @Override

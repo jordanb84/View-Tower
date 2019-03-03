@@ -107,10 +107,6 @@ public class Assets {
         this.loadTexture("background/6.png");
         this.loadTexture("background/7.png");
 
-        this.loadTexture("background/layer_0_sky.png");
-        this.loadTexture("background/layer_1_mountain.png");
-        this.loadTexture("background/layer_2_grass.png");
-
         this.assetManager.finishLoading();
     }
 
