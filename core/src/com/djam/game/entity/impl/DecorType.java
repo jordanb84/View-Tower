@@ -10,7 +10,7 @@ import java.util.List;
 public enum  DecorType {
     Painting(null, 30, 0.1f, false, "Painting", "Improves employee view in a room! Place in any room", 25, 0.3f, "decor/painting_0.png", "decor/painting_1.png", "decor/painting_2.png", "decor/painting_3.png", "decor/painting_4.png", "decor/painting_5.png", "decor/painting_6.png", "decor/painting_7.png"),
     Fireflies(Color.GREEN, 40, 0.1f, true, "Jar of Fireflies", "Improves employee view in a room! Place in any room", 25, 0.3f, "decor/firefly_0.png", "decor/firefly_1.png", "decor/firefly_2.png", "decor/firefly_3.png"),
-    Tv(Color.YELLOW, 60, 0.3f, true, "Television", "Improves employee view in a room! Place in any room", 25, 0.3f, "decor/tv_0.png", "decor/tv_1.png"),
+    Tv(Color.YELLOW, 60, 0.4f, true, "Television", "Improves employee view in a room! Place in any room", 25, 0.3f, "decor/tv_0.png", "decor/tv_1.png"),
 
     ;
 

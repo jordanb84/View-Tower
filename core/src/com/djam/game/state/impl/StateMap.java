@@ -32,6 +32,8 @@ public class StateMap extends State {
 
         this.map.renderLights(batch, camera);
 
+        this.map.renderText(batch, camera);
+
         this.uiHud.render(batch);
 
         this.map.renderHud(batch, camera);

@@ -44,7 +44,7 @@ public abstract class EntityNpc extends Entity {
     }
 
     public void happinessChange() {
-        float happinessChange = -0.3f;
+        float happinessChange = -0.6f;
 
         for(EntityDecor decor : this.getRoom().getDecor()) {
             happinessChange += decor.getDecorType().HAPPINESS_BONUS;

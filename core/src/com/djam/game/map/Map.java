@@ -19,8 +19,11 @@ import com.djam.game.entity.impl.EntityPlayer;
 import com.djam.game.entity.room.Business;
 import com.djam.game.entity.room.EntityRoomBlank;
 import com.djam.game.happiness.Happiness;
+import com.djam.game.ui.text.Text;
+import com.djam.game.ui.text.TextType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Map {
@@ -49,6 +52,8 @@ public class Map {
     private RayHandler rayHandler;
 
     private World world;
+
+    private HashMap<String, Vector2> text = new HashMap<String, Vector2>();
 
     public Map() {
         this.business = new Business(this);
@@ -122,6 +127,18 @@ public class Map {
         this.research.render(batch, camera);
 
         this.happiness.render(batch, camera);
+
+    }
+
+    public void renderText(SpriteBatch batch, OrthographicCamera camera) {
+        if(this.text.size() > 0) {
+            //batch.setProjectionMatrix(this.getTextCamera().combined);
+            for(HashMap.Entry<String, Vector2> entry : this.text.entrySet()) {
+                TextType.Default_Medium.FONT.draw(batch, entry.getKey(), entry.getValue().x, entry.getValue().y);
+            }
+
+            this.text.clear();
+        }
     }
 
     public void update(OrthographicCamera camera) {
@@ -217,6 +234,10 @@ public class Map {
 
     public RayHandler getRayHandler() {
         return rayHandler;
+    }
+
+    public void drawText(String text, Vector2 position) {
+        this.text.put(text, position);
     }
 
 }

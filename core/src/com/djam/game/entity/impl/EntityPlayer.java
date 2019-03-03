@@ -3,6 +3,7 @@ package com.djam.game.entity.impl;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.djam.game.animation.Animation;
@@ -11,6 +12,8 @@ import com.djam.game.entity.Direction;
 import com.djam.game.entity.Entity;
 import com.djam.game.entity.EntityLiving;
 import com.djam.game.map.Map;
+import com.djam.game.ui.text.Text;
+import com.djam.game.ui.text.TextType;
 
 public class EntityPlayer extends EntityLiving {
 
@@ -75,36 +78,22 @@ public class EntityPlayer extends EntityLiving {
             this.getDirectionalAnimation().setDirection(this.getDirection());
         }
 
-        for(EntityLadder ladder : this.getMap().getLadders()) {
-            if(this.getBody().overlaps(ladder.getBody())) {
-                //Vector2 newPosition = new Vector2(this.getPosition().x, this.getPosition().y);
-
-                if(Gdx.input.isKeyJustPressed(Input.Keys.W)) {
-                    //newPosition.add(0, 69);
-                    this.jump(new Vector2(this.getPosition().x, this.getPosition().y + 69), ladder);
-                }
-                if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-                    //newPosition.add(0, -67);
-                    this.jump(new Vector2(this.getPosition().x, this.getPosition().y -67), ladder);
-                }
-
-
-            }
-        }
-
         this.updatePhysics();
     }
 
-    public void jump(Vector2 newPosition, EntityLadder currentLadder) {
+    public boolean jump(Vector2 newPosition, EntityLadder currentLadder) {
         Rectangle newPositionBody = new Rectangle(newPosition.x, newPosition.y, this.getWidth(), this.getHeight());
 
         for(EntityLadder ladder : this.getMap().getLadders()) {
             if(ladder != currentLadder) {
                 if(newPositionBody.overlaps(ladder.getBody())) {
                     this.getPosition().set(newPosition.x, newPosition.y);
+                    return true;
                 }
             }
         }
+
+        return false;
     }
 
     @Override
@@ -172,5 +161,40 @@ public class EntityPlayer extends EntityLiving {
         System.out.println("Setup animations");
 
         return idle;
+    }
+
+    private boolean usedLadder;
+
+    @Override
+    public void render(SpriteBatch batch, OrthographicCamera camera) {
+        super.render(batch, camera);
+        for(EntityLadder ladder : this.getMap().getLadders()) {
+            if(this.getBody().overlaps(ladder.getBody())) {
+                if(!this.usedLadder) {
+                    this.getMap().drawText("Press UP or DOWN\n(Needs adjacent ladder)", new Vector2(this.getPosition().x - this.getWidth() * 2 * 1.1f, this.getPosition().y));
+                }
+                //TextType.Default_Medium.FONT.draw(batch, "Press UP or DOWN", this.getPosition().x, this.getPosition().y);
+                //Vector2 newPosition = new Vector2(this.getPosition().x, this.getPosition().y);
+
+                if(Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+                    //newPosition.add(0, 69);
+                    boolean jumped = this.jump(new Vector2(this.getPosition().x, this.getPosition().y + 69), ladder);
+
+                    if(jumped) {
+                        this.usedLadder = true;
+                    }
+                }
+                if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+                    //newPosition.add(0, -67);
+                    boolean jumped = this.jump(new Vector2(this.getPosition().x, this.getPosition().y -67), ladder);
+
+                    if(jumped) {
+                        this.usedLadder = true;
+                    }
+                }
+
+
+            }
+        }
     }
 }

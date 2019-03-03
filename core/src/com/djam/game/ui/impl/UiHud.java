@@ -257,18 +257,24 @@ class LockedShopButton extends ShopButton {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 if(unlockAllowed()) {
+                    boolean firstUnlock = false;
                     if (research.getBalance() >= unlockCost) {
-                        purchase(event, x, y);
+                        //purchase(event, x, y);
                         if (!purchased) {
                             resetTextures();
                             research.modifyBalance(-unlockCost);
                             purchased = true;
                             unlock();
+                            firstUnlock = true;
                         }
                     }
 
                     if (purchased) {
                         resetTextures();
+
+                        if(!firstUnlock) {
+                            purchase(event, x, y);
+                        }
                     }
 
                     out.println("Clicked");
@@ -391,7 +397,7 @@ class RoomShopButton extends ShopButton {
     private Currency currency;
 
     public RoomShopButton(Business business, Currency currency, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
-        super("Employee Room\n(Place at a grey area to build)\n", business.getRoomPrice(), skin, upTexture, downTexture, hoverTexture);
+        super("Employee Room\n(Place at a transparent unbuilt area to build)\n", business.getRoomPrice(), skin, upTexture, downTexture, hoverTexture);
         this.business = business;
         this.currency = currency;
     }
