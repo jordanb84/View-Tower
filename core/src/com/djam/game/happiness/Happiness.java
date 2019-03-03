@@ -92,13 +92,13 @@ public class Happiness {
 
 
     public void update(OrthographicCamera camera) {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+        /**if(Gdx.input.isKeyJustPressed(Input.Keys.P)) {
             this.percentage += 10;
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.O)) {
             this.percentage -= 10;
-        }
+        }**/
 
         this.elapsedSinceHappinessChange += 1 * Gdx.graphics.getDeltaTime();
 

@@ -32,17 +32,12 @@ public class EntityPlayer extends EntityLiving {
 
         float speed = 50;
 
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             this.move(Direction.LEFT, speed);
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             this.move(Direction.RIGHT, speed);
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.E)) {
-            camera.position.add(1, 0, 0);
-            camera.update();
         }
 
         boolean stopped = false;
@@ -176,7 +171,7 @@ public class EntityPlayer extends EntityLiving {
                 //TextType.Default_Medium.FONT.draw(batch, "Press UP or DOWN", this.getPosition().x, this.getPosition().y);
                 //Vector2 newPosition = new Vector2(this.getPosition().x, this.getPosition().y);
 
-                if(Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+                if(Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
                     //newPosition.add(0, 69);
                     boolean jumped = this.jump(new Vector2(this.getPosition().x, this.getPosition().y + 69), ladder);
 
@@ -184,7 +179,7 @@ public class EntityPlayer extends EntityLiving {
                         this.usedLadder = true;
                     }
                 }
-                if(Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+                if(Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
                     //newPosition.add(0, -67);
                     boolean jumped = this.jump(new Vector2(this.getPosition().x, this.getPosition().y -67), ladder);
 
