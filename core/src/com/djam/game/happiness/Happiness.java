@@ -38,7 +38,7 @@ public class Happiness {
 
     private float elapsedSinceHappinessChange;
 
-    private float happinessChangeInterval = 3;
+    private float happinessChangeInterval = 5;
 
     public Happiness(Map map) {
         Assets assets = Assets.getInstance();

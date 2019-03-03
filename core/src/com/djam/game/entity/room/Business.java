@@ -21,6 +21,8 @@ public class Business {
 
     private List<EntityRoom> rooms = new ArrayList<EntityRoom>();
 
+    private List<BusinessRow> rows = new ArrayList<BusinessRow>();
+
     private boolean placing;
 
     //TODO probably switch out to BuildingType to support placing multiple types of rooms
@@ -45,6 +47,8 @@ public class Business {
 
     private boolean release;
 
+    private int gridWidth;
+
     public Business(Map map) {
         this.map = map;
 
@@ -57,7 +61,11 @@ public class Business {
 
         this.roomIcon = new Sprite(Assets.getInstance().getTexture("ui/room_icon.png"));
 
-        this.generateRoomGrid(4, 32);
+        this.gridWidth = 4;
+        this.generateRoomGrid(this.gridWidth, 2);
+
+        //this.addBlankRow();
+        //this.addBlankRow();
 
         //this.placingNpc = NpcType.Farmer;
     }
@@ -225,12 +233,40 @@ public class Business {
         float roomHeight = this.placingSprite.getHeight();
 
         for(int y = 0; y < gridHeight; y++) {
+            List<EntityRoom> rowRooms = new ArrayList<EntityRoom>();
+
             for(int x = 0; x < gridWidth; x++) {
                 Vector2 roomPosition = new Vector2(x * roomWidth, y * roomHeight);
                 roomPosition.add(0, 0);
-                this.rooms.add(new EntityRoomBlank(this.map, roomPosition));
+                rowRooms.add(new EntityRoomBlank(this.map, roomPosition));
             }
+
+            this.addRow(rowRooms);
+            //this.rooms.addAll(rowRooms);
         }
+    }
+
+    public void addRow(List<EntityRoom> rowRooms) {
+        this.rows.add(new BusinessRow(rowRooms));
+
+        this.rooms.addAll(rowRooms);
+    }
+
+    public void addBlankRow() {
+        float roomWidth = this.placingSprite.getWidth();
+        float roomHeight = this.placingSprite.getHeight();
+
+        int y = this.getFloors();
+
+        List<EntityRoom> rowRooms = new ArrayList<EntityRoom>();
+
+        for(int x = 0; x < gridWidth; x++) {
+            Vector2 roomPosition = new Vector2(x * roomWidth, y * roomHeight);
+            rowRooms.add(new EntityRoomBlank(this.map, roomPosition));
+        }
+
+        System.out.println("Adding row " + y + " with " + rowRooms.size() + " rooms");
+        this.addRow(rowRooms);
     }
 
     public boolean isPlacingNpc() {
@@ -310,6 +346,36 @@ public class Business {
         this.stopPlacingDecor();
         this.stopPlacingRoom();
         this.stopPlacingNpc();
+    }
+
+    public int getFloors() {
+        return this.rows.size();
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+}
+
+class BusinessRow { //floor
+
+    List<EntityRoom> rooms = new ArrayList<EntityRoom>();
+
+    public BusinessRow(List<EntityRoom> rooms) {
+        this.rooms = rooms;
+    }
+
+    public void render(SpriteBatch batch, OrthographicCamera camera) {
+        for(EntityRoom room : this.rooms) {
+            room.render(batch, camera);
+        }
+    }
+
+    public void update(OrthographicCamera camera) {
+        for(EntityRoom room : this.rooms) {
+            room.update(camera);
+        }
     }
 
 }

@@ -162,6 +162,9 @@ public class Assets {
 
         this.loadTexture("ui/heart_icon.png");
 
+        this.loadTexture("ui/newfloor.png");
+        this.loadTexture("ui/newfloor_overlay.png");
+
         this.assetManager.finishLoading();
     }
 

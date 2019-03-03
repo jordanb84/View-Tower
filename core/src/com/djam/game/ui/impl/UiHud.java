@@ -90,11 +90,17 @@ class NpcShop extends HorizontalGroup {
         DecorShopButton paintingShopButton = new DecorShopButton(DecorType.Painting, business, currency, skin, paintingShopIcon, paintingShopIcon, paintingShopIconHover);
 
         this.addActor(paintingShopButton);
+
+        PurchaseFloorShopButton purchaseFloorShopButton = new PurchaseFloorShopButton(business, skin, 25);
+
+        this.addActor(purchaseFloorShopButton);
     }
 
 }
 
 class ShopButton extends ImageButton {
+
+    private TextTooltip textTooltip;
 
     public ShopButton(String productName, int cost, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
         super(new SpriteDrawable(new Sprite(upTexture)), new SpriteDrawable(new Sprite(downTexture)));
@@ -108,10 +114,10 @@ class ShopButton extends ImageButton {
     }
 
     public void setupListeners(String productName, int cost) {
-        TextTooltip tooltip = new TextTooltip(productName + " - " +" Cost: " + cost + " coins", SkinType.Arcade.SKIN);
-        tooltip.setInstant(true);
+        this.textTooltip = new TextTooltip(productName + " - " +" Cost: " + cost + " coins", SkinType.Arcade.SKIN);
+        this.textTooltip.setInstant(true);
 
-        this.addListener(tooltip);
+        this.addListener(this.textTooltip);
 
         this.addListener(new ClickListener() {
             @Override
@@ -120,6 +126,36 @@ class ShopButton extends ImageButton {
                 purchase(event, x, y);
             }
         });
+    }
+
+    public TextTooltip getTextTooltip() {
+        return textTooltip;
+    }
+
+}
+
+class PurchaseFloorShopButton extends ShopButton {
+
+    private Business business;
+
+    private int cost;
+
+    public PurchaseFloorShopButton(Business business, Skin skin, int cost) {
+        super("Add new floor", cost, skin, Assets.getInstance().getTexture("ui/newfloor.png"), Assets.getInstance().getTexture("ui/newfloor.png"), Assets.getInstance().getTexture("ui/newfloor_overlay.png"));
+        this.getTextTooltip().getActor().setText("Adds a new floor\n- Cost: " + cost + " research points");
+        this.business = business;
+        this.cost = cost;
+    }
+
+    @Override
+    public void purchase(InputEvent event, float x, float y) {
+        super.purchase(event, x, y);
+        Research research = this.business.getMap().getResearch();
+
+        if(research.getBalance() >= this.cost) {
+            research.modifyBalance(-this.cost);
+            this.business.addBlankRow();
+        }
     }
 
 }
