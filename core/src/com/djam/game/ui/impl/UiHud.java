@@ -392,7 +392,7 @@ class DecorShopButton extends ShopButton {
     private DecorType decorType;
 
     public DecorShopButton(DecorType decorType, Business business, Currency currency, Skin skin, Texture upTexture, Texture downTexture, Texture hoverTexture) {
-        super(decorType.NAME + "\n(" + decorType.DESCRIPTION + ")\n", decorType.PRICE, skin, upTexture, downTexture, hoverTexture);
+        super(decorType.NAME + "\n" + decorType.DESCRIPTION + "\n", decorType.PRICE, skin, upTexture, downTexture, hoverTexture);
         this.business = business;
         this.currency = currency;
         this.decorType = decorType;

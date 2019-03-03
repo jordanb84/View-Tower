@@ -30,7 +30,11 @@ public class StateMap extends State {
     public void render(SpriteBatch batch, OrthographicCamera camera) {
         this.map.render(batch, camera);
 
+        this.map.renderLights(batch, camera);
+
         this.uiHud.render(batch);
+
+        this.map.renderHud(batch, camera);
     }
 
     @Override

@@ -1,10 +1,14 @@
 package com.djam.game.map;
 
+import box2dLight.PointLight;
+import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import com.djam.game.economy.Currency;
 import com.djam.game.economy.Research;
 import com.djam.game.entity.Direction;
@@ -42,6 +46,10 @@ public class Map {
 
     private Research research;
 
+    private RayHandler rayHandler;
+
+    private World world;
+
     public Map() {
         this.business = new Business(this);
         this.currency = new Currency();
@@ -70,6 +78,24 @@ public class Map {
         this.business.replaceRoom(room);
 
         this.research = new Research();
+
+        this.world = new World(new Vector2(0, 0), false);
+        this.rayHandler = new RayHandler(world);
+
+        RayHandler.useDiffuseLight(true);
+
+        this.rayHandler.setAmbientLight(Color.GRAY);
+
+        RayHandler.setGammaCorrection(true);
+        RayHandler.useDiffuseLight(true);
+        this.rayHandler.setAmbientLight(Color.GRAY);
+        rayHandler.setCulling(true);
+        rayHandler.setBlur(true);
+        rayHandler.setBlurNum(1);
+        rayHandler.setShadows(true);
+        
+        //new PointLight(rayHandler, 100, new Color(0,1,0,1), 100, 377, 30);
+
     }
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
@@ -81,6 +107,16 @@ public class Map {
             entity.render(batch, camera);
         }
 
+    }
+
+    public void renderLights(SpriteBatch batch, OrthographicCamera camera) {
+        batch.end();
+        this.rayHandler.setCombinedMatrix(camera.combined);
+        this.rayHandler.updateAndRender();
+        batch.begin();
+    }
+
+    public void renderHud(SpriteBatch batch, OrthographicCamera camera) {
         this.currency.render(batch, camera);
         this.research.render(batch, camera);
 
