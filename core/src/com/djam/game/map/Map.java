@@ -93,7 +93,7 @@ public class Map {
         rayHandler.setBlur(true);
         rayHandler.setBlurNum(1);
         rayHandler.setShadows(true);
-        
+
         //new PointLight(rayHandler, 100, new Color(0,1,0,1), 100, 377, 30);
 
     }
@@ -213,4 +213,9 @@ public class Map {
     public float getAverageHappiness() {
         return this.getHappiness().getPercentage() / 100;
     }
+
+    public RayHandler getRayHandler() {
+        return rayHandler;
+    }
+
 }

@@ -189,6 +189,15 @@ public class Assets {
         this.loadTexture("npc/head_farmer_4.png");
         this.loadTexture("npc/head_farmer_5.png");
 
+        this.loadTexture("decor/firefly.png");
+
+        this.loadTexture("decor/firefly_0.png");
+        this.loadTexture("decor/firefly_1.png");
+        this.loadTexture("decor/firefly_2.png");
+        this.loadTexture("decor/firefly_3.png");
+
+        this.loadTexture("decor/firefly_overlay.png");
+
         this.assetManager.finishLoading();
     }
 

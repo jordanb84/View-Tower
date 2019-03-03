@@ -95,6 +95,13 @@ class NpcShop extends HorizontalGroup {
 
         this.addActor(paintingShopButton);
 
+        Texture fireflyShopIcon = Assets.getInstance().getTexture("decor/firefly.png");
+        Texture fireflyShopIconHover = Assets.getInstance().getTexture("decor/firefly_overlay.png");
+
+        DecorShopButton fireflyShopButton = new DecorShopButton(DecorType.Fireflies, business, currency, skin, fireflyShopIcon, fireflyShopIcon, fireflyShopIconHover);
+
+        this.addActor(fireflyShopButton);
+
         PurchaseFloorShopButton purchaseFloorShopButton = new PurchaseFloorShopButton(business, skin, 25);
 
         this.addActor(purchaseFloorShopButton);

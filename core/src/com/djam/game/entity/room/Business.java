@@ -80,7 +80,7 @@ public class Business {
             room.render(batch, camera);
         }
 
-        System.out.println("Hovering " + this.isHover());
+        //System.out.println("Hovering " + this.isHover());
 
         //TODO render red overlay if you can't place it, possibly green if you can
         if(this.placing || this.placingRoom || this.placingDecor) {
