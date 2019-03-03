@@ -1,6 +1,7 @@
 package com.djam.game.assets;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.djam.game.animation.Animation;
@@ -228,6 +229,8 @@ public class Assets {
         this.loadTexture("plant/pot1_2.png");
         this.loadTexture("plant/pot1_3.png");
 
+        this.assetManager.load("music/main.mp3", Music.class);
+
         this.assetManager.finishLoading();
     }
 
@@ -245,6 +248,10 @@ public class Assets {
 
     public Skin getSkin(String path) {
         return this.assetManager.get(path, Skin.class);
+    }
+
+    public Music getMusic(String path) {
+        return this.assetManager.get(path, Music.class);
     }
 
 }

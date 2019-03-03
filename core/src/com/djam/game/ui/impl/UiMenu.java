@@ -1,6 +1,7 @@
 package com.djam.game.ui.impl;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.djam.game.map.Background;
+import com.djam.game.music.MusicType;
 import com.djam.game.state.StateManager;
 import com.djam.game.ui.SkinType;
 import com.djam.game.ui.Ui;
@@ -65,6 +67,8 @@ public class UiMenu extends Ui {
 
         this.mouseListener = new MouseListener();
         this.getStage().addListener(this.mouseListener);
+
+        MusicType.play(MusicType.Main.MUSIC, true);
     }
 
     @Override
@@ -145,6 +149,10 @@ class ButtonPlay extends TextButton {
     public ButtonPlay(Skin skin, StateManager stateManager) {
         super("Play Game", skin);
         this.addListener(new PlayClicked(stateManager));
+        TextTooltip tooltip = new TextTooltip("Let's get started!", SkinType.Arcade.SKIN);
+        tooltip.setInstant(true);
+
+        this.addListener(tooltip);
     }
 
     public void play() {
@@ -172,6 +180,11 @@ class ButtonExit extends TextButton {
     public ButtonExit(Skin skin, StateManager stateManager) {
         super("Exit Game", skin);
         this.addListener(new ExitClicked(stateManager));
+
+        TextTooltip tooltip = new TextTooltip("Seeya", SkinType.Arcade.SKIN);
+        tooltip.setInstant(true);
+
+        this.addListener(tooltip);
     }
 
     public void play() {
@@ -198,7 +211,7 @@ class ButtonCredits extends TextButton {
 
     public ButtonCredits(Skin skin, StateManager stateManager) {
         super("Credits", skin);
-        TextTooltip tooltip = new TextTooltip("Programmed from scratch in 48 hours for Discord Jam 1.\n\nAssets from OpenGameArt users:\n\"OddPotatoGift\"\n\"CraftPix.net 2D Game Assets\"", SkinType.Arcade.SKIN);
+        TextTooltip tooltip = new TextTooltip("Programmed from scratch in 48 hours for Discord Jam 1.\n\nAssets from OpenGameArt users:\n\"OddPotatoGift\"\n\"CraftPix.net 2D Game Assets\"\n\"rezoner\"", SkinType.Arcade.SKIN);
         tooltip.setInstant(true);
         this.addListener(tooltip);
     }
