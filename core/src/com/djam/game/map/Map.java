@@ -4,12 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.djam.game.economy.Currency;
 import com.djam.game.entity.Direction;
 import com.djam.game.entity.Entity;
 import com.djam.game.entity.EntityLiving;
 import com.djam.game.entity.impl.EntityLadder;
+import com.djam.game.entity.impl.EntityPlayer;
 import com.djam.game.entity.room.Business;
+import com.djam.game.entity.room.EntityRoomBlank;
 import com.djam.game.happiness.Happiness;
 
 import java.util.ArrayList;
@@ -46,6 +49,20 @@ public class Map {
         this.happiness = new Happiness(this);
 
         this.background = new Background(this);
+
+        EntityPlayer player = new EntityPlayer(this, new Vector2(640, 30));
+
+        this.spawn(player);
+
+        player.updateBody();
+
+        System.out.println("Player set to " + player.getBody().getX() + "/" + player.getBody().getY() + "/" + player.getBody().getWidth() + "/" + player.getBody().getHeight());
+
+        EntityRoomBlank room = this.business.getEmptyRoomAt(player.getBody());
+
+        System.out.println("Room: " + room);
+
+        this.business.replaceRoom(room);
     }
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
@@ -121,7 +138,7 @@ public class Map {
             }
         }
 
-        return false;
+        return this.business.emptyRoomAt(rectangle);
     }
 
     public Business getBusiness() {

@@ -23,10 +23,6 @@ public class StateMap extends State {
     public void create() {
         this.map = new Map();
 
-        EntityPlayer player = new EntityPlayer(this.map, new Vector2(100, 30));
-
-        this.map.spawn(player);
-
         this.uiHud = new UiHud(this.map.getBusiness(), this.map.getCurrency());
     }
 

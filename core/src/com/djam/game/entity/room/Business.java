@@ -44,7 +44,7 @@ public class Business {
         this.placingSprite = new Sprite(Assets.getInstance().getTexture("building/room.png"));
         this.placingSprite.setAlpha(0.5f);
 
-        this.generateRoomGrid(6, 8);
+        this.generateRoomGrid(4, 32);
 
         //this.placingNpc = NpcType.Farmer;
     }
@@ -185,5 +185,36 @@ public class Business {
     public void stopPlacingNpc() {
         this.placingNpc = null;
     }
+
+    public boolean emptyRoomAt(Rectangle rectangle) {
+        for(EntityRoom room : this.rooms) {
+            if(room instanceof EntityRoomBlank) {
+                if (room.getBody().overlaps(rectangle)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public EntityRoomBlank getEmptyRoomAt(Rectangle rectangle) {
+        for(EntityRoom room : this.rooms) {
+            room.updateBody();
+            if(room instanceof EntityRoomBlank) {
+                if (room.getBody().overlaps(rectangle)) {
+                    return ((EntityRoomBlank) room);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public void replaceRoom(EntityRoomBlank room) {
+        this.rooms.remove(room);
+        this.rooms.add(new EntityRoom(this.map, new Vector2(room.getPosition().x, room.getPosition().y)));
+    }
+
 
 }
