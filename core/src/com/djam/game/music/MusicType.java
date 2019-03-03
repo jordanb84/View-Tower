@@ -21,6 +21,7 @@ public enum MusicType {
         }
 
         playing = music;
+        playing.setVolume(0.7f);
         playing.play();
 
         playing.setLooping(loop);

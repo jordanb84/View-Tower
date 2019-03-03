@@ -2,6 +2,7 @@ package com.djam.game.assets;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.djam.game.animation.Animation;
@@ -231,6 +232,8 @@ public class Assets {
 
         this.assetManager.load("music/main.mp3", Music.class);
 
+        this.assetManager.load("sound/click.ogg", Sound.class);
+
         this.assetManager.finishLoading();
     }
 
@@ -252,6 +255,10 @@ public class Assets {
 
     public Music getMusic(String path) {
         return this.assetManager.get(path, Music.class);
+    }
+
+    public Sound getSound(String path) {
+        return this.assetManager.get(path, Sound.class);
     }
 
 }

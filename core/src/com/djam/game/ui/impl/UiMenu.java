@@ -2,6 +2,7 @@ package com.djam.game.ui.impl;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -20,6 +21,7 @@ import com.djam.game.state.StateManager;
 import com.djam.game.ui.SkinType;
 import com.djam.game.ui.Ui;
 import com.sun.org.apache.xpath.internal.operations.Or;
+import sound.SoundType;
 
 public class UiMenu extends Ui {
 
@@ -169,6 +171,7 @@ class ButtonPlay extends TextButton {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            SoundType.play(SoundType.Click.SOUND);
             stateManager.setActiveState("map");
             super.clicked(event, x, y);
         }
@@ -201,6 +204,7 @@ class ButtonExit extends TextButton {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            SoundType.play(SoundType.Click.SOUND);
             System.exit(0);
             super.clicked(event, x, y);
         }
@@ -211,7 +215,7 @@ class ButtonCredits extends TextButton {
 
     public ButtonCredits(Skin skin, StateManager stateManager) {
         super("Credits", skin);
-        TextTooltip tooltip = new TextTooltip("Programmed from scratch in 48 hours for Discord Jam 1.\n\nAssets from OpenGameArt users:\n\"OddPotatoGift\"\n\"CraftPix.net 2D Game Assets\"\n\"rezoner\"", SkinType.Arcade.SKIN);
+        TextTooltip tooltip = new TextTooltip("Programmed from scratch in 48 hours for Discord Jam 1.\n\nAssets from OpenGameArt users:\n\"OddPotatoGift\"\n\"CraftPix.net 2D Game Assets\"\n\"rezoner\"\n\"NenadSimic\"", SkinType.Arcade.SKIN);
         tooltip.setInstant(true);
         this.addListener(tooltip);
     }

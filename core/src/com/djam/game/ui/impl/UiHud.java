@@ -21,6 +21,7 @@ import com.djam.game.entity.room.Business;
 import com.djam.game.state.StateManager;
 import com.djam.game.ui.SkinType;
 import com.djam.game.ui.Ui;
+import sound.SoundType;
 
 import static java.lang.System.out;
 
@@ -162,7 +163,7 @@ class ShopButton extends ImageButton {
     }
 
     public void purchase(InputEvent event, float x, float y) {
-
+        SoundType.play(SoundType.Click.SOUND);
     }
 
     public void setupListeners(String productName, int cost) {

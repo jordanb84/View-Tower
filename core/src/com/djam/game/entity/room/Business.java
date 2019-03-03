@@ -14,6 +14,7 @@ import com.djam.game.entity.impl.EntityDecor;
 import com.djam.game.entity.impl.NpcType;
 import com.djam.game.map.Map;
 import com.djam.game.ui.impl.UnlockTypes;
+import sound.SoundType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +109,8 @@ public class Business {
                                     roomAddQueue.add(fullRoom);
 
                                     this.map.getCurrency().modifyBalance(-this.roomPrice);
+
+                                    SoundType.play(SoundType.Click.SOUND);
                                 }
 
                                 if(this.map.getCurrency().getBalance() < this.roomPrice) {
@@ -131,6 +134,8 @@ public class Business {
                                             this.map.getCurrency().modifyBalance(-this.placingNpc.COST);
 
                                             desk.unplace();
+
+                                            SoundType.play(SoundType.Click.SOUND);
                                         }
 
                                         if(this.map.getCurrency().getBalance() <= this.placingNpc.COST) {
@@ -160,6 +165,8 @@ public class Business {
                                                 room.getDecor().add(new EntityDecor(this.currentDecor, this.map, position));
 
                                                 this.map.getCurrency().modifyBalance(-this.currentDecor.PRICE);
+
+                                                SoundType.play(SoundType.Click.SOUND);
                                             }
 
                                             //System.out.println("Current decor: " + this.currentDecor);
