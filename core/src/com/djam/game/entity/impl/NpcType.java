@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.djam.game.assets.Assets;
 import com.djam.game.entity.EntityNpc;
+import com.djam.game.entity.room.EntityRoom;
 import com.djam.game.map.Map;
 
 public enum NpcType {
@@ -31,12 +32,12 @@ public enum NpcType {
 
     public final int COST;
 
-    public EntityNpc generateNpc(Map map, Vector2 position) {
+    public EntityNpc generateNpc(EntityRoom room, Map map, Vector2 position) {
         EntityNpc npc = null;
 
         switch(this) {
             case Farmer:
-                npc = new EntityFarmer(map, position);
+                npc = new EntityFarmer(room, map, position);
                 break;
         }
 

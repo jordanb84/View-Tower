@@ -22,11 +22,15 @@ public class EntityDesk extends Entity {
 
     private EntityPlant plant;
 
-    public EntityDesk(Map map, Vector2 position) {
+    private EntityRoom room;
+
+    public EntityDesk(EntityRoom room, Map map, Vector2 position) {
         super(map, position);
 
         //this.npc = new EntityFarmer(map, new Vector2(position.x, position.y));
         //this.npc.getPosition().add(-this.npc.getWidth() / 2, 0);
+
+        this.room = room;
     }
 
     @Override
@@ -85,7 +89,7 @@ public class EntityDesk extends Entity {
     }
 
     public void placeNpc(NpcType npcType) {
-        EntityNpc placedNpc = npcType.generateNpc(this.getMap(), new Vector2(this.getPosition()));
+        EntityNpc placedNpc = npcType.generateNpc(this.room, this.getMap(), new Vector2(this.getPosition()));
 
         placedNpc.getPosition().add((-this.getWidth() - this.getWidth() / 2), 0);
 
@@ -104,6 +108,10 @@ public class EntityDesk extends Entity {
 
     public boolean hasCrops() {
         return this.plant != null;
+    }
+
+    public EntityNpc getNpc() {
+        return npc;
     }
 
 }

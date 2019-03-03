@@ -60,6 +60,8 @@ public class Map {
 
         EntityRoomBlank room = this.business.getEmptyRoomAt(player.getBody());
 
+        room.setupRoom();
+
         System.out.println("Room: " + room);
 
         this.business.replaceRoom(room);

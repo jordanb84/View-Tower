@@ -216,5 +216,8 @@ public class Business {
         this.rooms.add(new EntityRoom(this.map, new Vector2(room.getPosition().x, room.getPosition().y)));
     }
 
+    public List<EntityRoom> getRooms() {
+        return rooms;
+    }
 
 }

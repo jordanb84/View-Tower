@@ -1,12 +1,48 @@
 package com.djam.game.entity;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
+import com.djam.game.entity.room.EntityRoom;
 import com.djam.game.map.Map;
 
 public abstract class EntityNpc extends Entity {
 
-    public EntityNpc(Map map, Vector2 position) {
+    private float happiness;
+
+    private EntityRoom room;
+
+    private float elapsedSinceHappinessChange;
+
+    private float happinessChangeInterval = 3;
+
+    public EntityNpc(EntityRoom room, Map map, Vector2 position) {
         super(map, position);
+        this.happiness = 100;
+        this.room = room;
+    }
+
+    @Override
+    public void update(OrthographicCamera camera) {
+        super.update(camera);
+        this.elapsedSinceHappinessChange += 1 * Gdx.graphics.getDeltaTime();
+
+        if(this.elapsedSinceHappinessChange >= this.happinessChangeInterval) {
+            this.elapsedSinceHappinessChange = 0;
+            this.happinessChange();
+        }
+    }
+
+    public EntityRoom getRoom() {
+        return room;
+    }
+
+    public void happinessChange() {
+        this.happiness -= 0.3f;
+    }
+
+    public float getHappiness() {
+        return happiness;
     }
 
 }

@@ -77,7 +77,7 @@ public class EntityRoom extends Entity {
             float offset = deskWidth * (desk * 4);
             Vector2 position = new Vector2(start.x + offset, start.y);
 
-            this.desks.add(new EntityDesk(this.getMap(), position));
+            this.desks.add(new EntityDesk(this, this.getMap(), position));
         }
     }
 

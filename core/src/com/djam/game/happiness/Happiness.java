@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.djam.game.assets.Assets;
+import com.djam.game.entity.Entity;
+import com.djam.game.entity.room.EntityDesk;
+import com.djam.game.entity.room.EntityRoom;
 import com.djam.game.map.Map;
 import com.djam.game.ui.text.TextType;
 
@@ -31,7 +34,11 @@ public class Happiness {
 
     private float scale;
 
-    private float percentage = 80;
+    private float percentage = 100;
+
+    private float elapsedSinceHappinessChange;
+
+    private float happinessChangeInterval = 3;
 
     public Happiness(Map map) {
         Assets assets = Assets.getInstance();
@@ -90,6 +97,39 @@ public class Happiness {
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.O)) {
             this.percentage -= 10;
+        }
+
+        this.elapsedSinceHappinessChange += 1 * Gdx.graphics.getDeltaTime();
+
+        if(this.elapsedSinceHappinessChange >= this.happinessChangeInterval) {
+            this.elapsedSinceHappinessChange = 0;
+            this.calculateHappiness();
+        }
+    }
+
+    public void calculateHappiness() {
+        try {
+            float happinessSum = 0;
+            float employees = 0;
+
+                for (EntityRoom room : this.map.getBusiness().getRooms()) {
+                    for (EntityDesk desk : room.getDesks()) {
+                        if (desk.hasNpc()) {
+                            happinessSum += desk.getNpc().getHappiness();
+                            employees += 1;
+                        }
+                    }
+                }
+
+                if(employees > 0) {
+                    float average = happinessSum / employees;
+
+                    System.out.println("Average happiness is " + average + " from " + employees + " employees");
+
+                    this.percentage = average;
+                }
+        } catch(ArithmeticException noEmployees) {
+
         }
     }
 
