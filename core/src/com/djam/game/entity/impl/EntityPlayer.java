@@ -47,6 +47,11 @@ public class EntityPlayer extends EntityLiving {
             camera.update();
         } else {
             this.setDirectionalAnimation(this.idleAnimation);
+
+            //System.out.println("Not moving. Direction: " + this.getDirection().name());
+            if(this.getDirection() == Direction.LEFT || this.getDirection() == Direction.RIGHT) {
+                this.idleAnimation.setDirection(this.getDirection());
+            }
         }
 
         if(!(this.getDirection() == Direction.DOWN) && !(this.getDirection() == Direction.UP)) {

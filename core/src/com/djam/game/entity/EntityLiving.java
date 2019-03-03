@@ -52,7 +52,9 @@ public abstract class EntityLiving extends Entity {
 
     @Override
     public boolean move(Direction direction, float speed) {
-        this.setDirection(direction);
+        if(!(direction == Direction.DOWN)) {
+            this.setDirection(direction);
+        }
         return super.move(direction, speed);
     }
 
