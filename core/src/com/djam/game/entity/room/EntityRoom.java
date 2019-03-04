@@ -128,4 +128,17 @@ public class EntityRoom extends Entity {
         return this.placingDecor != null;
     }
 
+    public float getProfit() {
+        if(this.desks.size() > 0) {
+            float profit = 0;
+            for(EntityDesk desk : this.desks) {
+                profit += desk.getProfit();
+            }
+
+            return profit;
+        }
+
+        return 0;
+    }
+
 }

@@ -42,7 +42,7 @@ public enum  DecorType {
         this.HAPPINESS_BONUS = happinessBonus * 1.5f;
 
         this.NAME = name;
-        this.DESCRIPTION = description + "\n(Better view helps employees make more money)";
+        this.DESCRIPTION = description + "\n(Profit decreases if employees have a bad view.\nDecor improves their view and brings profits back)";
 
         this.PRICE = price;
 

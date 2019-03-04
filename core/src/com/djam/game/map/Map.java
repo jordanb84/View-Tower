@@ -17,11 +17,13 @@ import com.djam.game.entity.EntityLiving;
 import com.djam.game.entity.impl.EntityLadder;
 import com.djam.game.entity.impl.EntityPlayer;
 import com.djam.game.entity.room.Business;
+import com.djam.game.entity.room.EntityRoom;
 import com.djam.game.entity.room.EntityRoomBlank;
 import com.djam.game.happiness.Happiness;
 import com.djam.game.ui.text.Text;
 import com.djam.game.ui.text.TextType;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +57,8 @@ public class Map {
 
     private HashMap<String, Vector2> text = new HashMap<String, Vector2>();
 
+    private float profit;
+
     public Map() {
         this.business = new Business(this);
         this.currency = new Currency();
@@ -67,7 +71,7 @@ public class Map {
         this.background = new Background();
 
         //EntityPlayer player = new EntityPlayer(this, new Vector2(377, 30));
-        EntityPlayer player = new EntityPlayer(this, new Vector2(377, 20));
+        EntityPlayer player = new EntityPlayer(this, new Vector2(377, 10));
 
         this.spawn(player);
 
@@ -123,10 +127,11 @@ public class Map {
     }
 
     public void renderHud(SpriteBatch batch, OrthographicCamera camera) {
-        this.currency.render(batch, camera);
+        this.currency.render(this, batch, camera);
         this.research.render(batch, camera);
 
         this.happiness.render(batch, camera);
+
 
     }
 
@@ -142,6 +147,7 @@ public class Map {
     }
 
     public void update(OrthographicCamera camera) {
+        this.profit = 0;
         this.business.update(camera);
         this.applyGravity();
 
@@ -159,6 +165,16 @@ public class Map {
         }
 
         this.happiness.update(camera);
+
+        this.profit = 0;
+
+        for(EntityRoom room : this.business.getRooms()) {
+            profit += room.getProfit();
+        }
+
+        String formattedValue = new DecimalFormat("#.##").format(this.profit);
+
+        System.out.println("Profit " + formattedValue);
     }
 
     public List<Entity> getEntities() {
@@ -238,6 +254,14 @@ public class Map {
 
     public void drawText(String text, Vector2 position) {
         this.text.put(text, position);
+    }
+
+    public float getProfit() {
+        return profit;
+    }
+
+    public void setProfit(float profit) {
+        this.profit = profit;
     }
 
 }

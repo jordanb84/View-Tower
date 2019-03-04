@@ -51,7 +51,12 @@ public class EntityPlant extends EntityNpcItem {
 
             this.getMap().spawn(new EntityCoin(this.getMap(), new Vector2(this.getPosition().x, this.getPosition().y), profitChange));
             this.getMap().getCurrency().modifyBalance(profitChange);
+            //this.getMap().setProfit(this.getMap().getProfit() + profitChange);
         }
+    }
+
+    public float getProfit() {
+        return this.plantType.PROFIT * this.getMap().getAverageHappiness();
     }
 
 }
@@ -115,7 +120,7 @@ class EntityCoin extends Entity {
 
        // batch.setProjectionMatrix(textCamera.combined);
 
-        String formattedValue = new DecimalFormat("#.##").format(this.value); //"1.2";
+        String formattedValue = new DecimalFormat("#.##").format(this.value);
 
         TextType.Default_Medium.FONT.draw(batch, "+" + formattedValue, this.getPosition().x + 16, this.getPosition().y + 12);
     }

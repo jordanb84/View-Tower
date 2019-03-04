@@ -1,5 +1,6 @@
 package com.djam.game.assets;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -235,6 +236,8 @@ public class Assets {
         this.assetManager.load("sound/click.ogg", Sound.class);
 
         this.assetManager.finishLoading();
+
+        Gdx.graphics.setTitle("View Tower - Made for Discord Jam 1");
     }
 
     public static Assets getInstance() {

@@ -137,4 +137,16 @@ public class EntityDesk extends Entity {
         return npc;
     }
 
+    public float getProfit() {
+        if(this.npcItem != null) {
+            if(this.npcItem instanceof EntityPlant) {
+                EntityPlant plant = ((EntityPlant) this.npcItem);
+
+                return plant.getProfit();
+            }
+        }
+
+        return 0;
+    }
+
 }
