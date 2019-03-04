@@ -13,9 +13,9 @@ import com.djam.game.ui.text.Text;
 public enum NpcType {
     Farmer("Farmer", "npc/farmer_0.png", "ui/farmer_overlay.png", 20),
     Researcher("Researcher", "npc/researcher_0.png", "ui/researcher_overlay.png", 35),
-    Senior_Farmer(null, null, UnlockTypes.EXPERIENCED_FARMER, "Experienced Farmer", 35, "npc/experiencedfarmer_0.png", "ui/experiencedfarmer_icon_overlay.png", "ui/experiencedfarmer_locked.png", 40),
-    Experienced_Farmer_Farmer("Experienced Farmer", UnlockTypes.EXPERIENCED_FARMER, UnlockTypes.SENIOR_FARMER, "Senior Farmer", 65, "npc/senior_farmer_0.png", "ui/senior_farmer_overlay.png", "ui/senior_farmer_locked.png", 80),
-    Head_Farmer("Senior Farmer", UnlockTypes.SENIOR_FARMER, UnlockTypes.HEAD_FARMER, "Head of Farming", 115, "npc/head_farmer_0.png", "ui/head_farmer_overlay.png", "ui/head_farmer_locked.png", 160)
+    Senior_Farmer(null, null, UnlockTypes.EXPERIENCED_FARMER, "Experienced Farmer", 55, "npc/experiencedfarmer_0.png", "ui/experiencedfarmer_icon_overlay.png", "ui/experiencedfarmer_locked.png", 40),
+    Experienced_Farmer_Farmer("Experienced Farmer", UnlockTypes.EXPERIENCED_FARMER, UnlockTypes.SENIOR_FARMER, "Senior Farmer", 130, "npc/senior_farmer_0.png", "ui/senior_farmer_overlay.png", "ui/senior_farmer_locked.png", 80),
+    Head_Farmer("Senior Farmer", UnlockTypes.SENIOR_FARMER, UnlockTypes.HEAD_FARMER, "Head of Farming", 255, "npc/head_farmer_0.png", "ui/head_farmer_overlay.png", "ui/head_farmer_locked.png", 160)
 
     ;
 
